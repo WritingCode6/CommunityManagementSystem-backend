@@ -20,6 +20,10 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public static final String ID = "id";
+    public static final String USER_NAME = "user_name";
+    public static final String PASSWORD = "password";
+
     /**
      * 主键id
      */

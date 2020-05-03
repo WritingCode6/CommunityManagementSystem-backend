@@ -3,6 +3,7 @@ package com.writingcode.www.community.entity.po;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.sun.xml.internal.bind.v2.model.core.ID;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -19,6 +20,9 @@ import java.io.Serializable;
 public class Role implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    public static final String ID = "id";
+    public static final String ROLE_NAME = "role_name";
 
     /**
      * 主键

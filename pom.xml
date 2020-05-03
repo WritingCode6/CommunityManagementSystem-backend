@@ -69,21 +69,21 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>${mybatis-plus-starter.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-generator</artifactId>
-            <version>3.3.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.freemarker</groupId>
-            <artifactId>freemarker</artifactId>
-            <version>2.3.28</version>
-        </dependency>
-        <dependency>
-            <groupId>com.ibeetl</groupId>
-            <artifactId>beetl</artifactId>
-            <version>2.9.8</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.baomidou</groupId>-->
+<!--            <artifactId>mybatis-plus-generator</artifactId>-->
+<!--            <version>3.3.1</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.freemarker</groupId>-->
+<!--            <artifactId>freemarker</artifactId>-->
+<!--            <version>2.3.28</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.ibeetl</groupId>-->
+<!--            <artifactId>beetl</artifactId>-->
+<!--            <version>2.9.8</version>-->
+<!--        </dependency>-->
 
         <!--json与java转换-->
         <dependency>

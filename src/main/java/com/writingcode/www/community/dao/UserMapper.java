@@ -1,5 +1,6 @@
 package com.writingcode.www.community.dao;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.writingcode.www.community.entity.po.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -12,5 +13,19 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2020-05-02
  */
 public interface UserMapper extends BaseMapper<User> {
+
+    /**
+     * 根据登录信息搜索用户
+     *
+     * @param userName 用户名
+     * @param password 密码
+     * @return User
+     */
+    default User selectUserByLogin(String userName, String password){
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq(User.USER_NAME, userName);
+        queryWrapper.eq(User.PASSWORD, password);
+        return selectOne(queryWrapper);
+    }
 
 }

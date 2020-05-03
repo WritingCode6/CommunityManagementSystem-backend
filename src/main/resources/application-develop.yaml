@@ -26,3 +26,10 @@ mybatis-plus:
 
 server:
   port: 7001
+
+jwt:
+  jwtKey: Community
+  jwtIssuer: Chavy
+security:
+  enable-session: false
+  expire: 7200000
