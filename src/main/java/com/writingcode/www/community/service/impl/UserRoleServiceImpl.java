@@ -1,6 +1,6 @@
 package com.writingcode.www.community.service.impl;
 
-import com.writingcode.www.community.entity.UserRole;
+import com.writingcode.www.community.entity.po.UserRole;
 import com.writingcode.www.community.dao.UserRoleMapper;
 import com.writingcode.www.community.service.IUserRoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

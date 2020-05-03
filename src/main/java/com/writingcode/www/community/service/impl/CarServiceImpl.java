@@ -1,6 +1,6 @@
 package com.writingcode.www.community.service.impl;
 
-import com.writingcode.www.community.entity.Car;
+import com.writingcode.www.community.entity.po.Car;
 import com.writingcode.www.community.dao.CarMapper;
 import com.writingcode.www.community.service.ICarService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

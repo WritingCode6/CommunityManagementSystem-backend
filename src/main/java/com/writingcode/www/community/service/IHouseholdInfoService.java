@@ -1,6 +1,6 @@
 package com.writingcode.www.community.service;
 
-import com.writingcode.www.community.entity.HouseholdInfo;
+import com.writingcode.www.community.entity.po.HouseholdInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

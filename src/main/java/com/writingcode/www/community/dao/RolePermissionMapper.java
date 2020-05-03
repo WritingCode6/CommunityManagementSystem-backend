@@ -1,6 +1,6 @@
 package com.writingcode.www.community.dao;
 
-import com.writingcode.www.community.entity.RolePermission;
+import com.writingcode.www.community.entity.po.RolePermission;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

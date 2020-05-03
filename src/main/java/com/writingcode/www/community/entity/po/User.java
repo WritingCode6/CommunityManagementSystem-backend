@@ -1,4 +1,4 @@
-package com.writingcode.www.community.entity;
+package com.writingcode.www.community.entity.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -15,8 +15,8 @@ import java.io.Serializable;
  */
 @Data
 @Accessors(chain = true)
-@TableName("staff_info")
-public class StaffInfo implements Serializable {
+@TableName("user")
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -27,35 +27,13 @@ public class StaffInfo implements Serializable {
     private Long id;
 
     /**
-     * 真实姓名
+     * 用户名
      */
-    private String name;
+    private String userName;
 
     /**
-     * 身份证号
+     * 密码
      */
-    private String idNumber;
-
-    /**
-     * 手机号
-     */
-    private String phone;
-
-    /**
-     * 性别 0-男 1-女
-     */
-    private Integer sex;
-
-    private String address;
-
-    /**
-     * 用户id
-     */
-    private Long userId;
-
-    /**
-     * 工号
-     */
-    private Long serviceId;
+    private String password;
 
 }

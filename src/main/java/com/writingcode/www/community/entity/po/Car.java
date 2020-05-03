@@ -1,4 +1,4 @@
-package com.writingcode.www.community.entity;
+package com.writingcode.www.community.entity.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

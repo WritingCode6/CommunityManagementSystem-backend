@@ -1,4 +1,4 @@
-package com.writingcode.www.community.entity;
+package com.writingcode.www.community.entity.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.time.LocalDateTime;
 import java.io.Serializable;
 
 /**
@@ -15,8 +16,8 @@ import java.io.Serializable;
  */
 @Data
 @Accessors(chain = true)
-@TableName("parking_space")
-public class ParkingSpace implements Serializable {
+@TableName("daily_duty")
+public class DailyDuty implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -24,11 +25,26 @@ public class ParkingSpace implements Serializable {
      * 主键id
      */
     @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    private Long id;
 
     /**
-     * 车位号
+     * 值班日期
      */
-    private Integer spaceNumber;
+    private LocalDateTime date;
+
+    /**
+     * 用户id
+     */
+    private Long employeeId;
+
+    /**
+     * 值班类型 
+     */
+    private Integer type;
+
+    /**
+     * 值班区域
+     */
+    private String place;
 
 }

@@ -1,6 +1,6 @@
 package com.writingcode.www.community.service.impl;
 
-import com.writingcode.www.community.entity.Feedback;
+import com.writingcode.www.community.entity.po.Feedback;
 import com.writingcode.www.community.dao.FeedbackMapper;
 import com.writingcode.www.community.service.IFeedbackService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

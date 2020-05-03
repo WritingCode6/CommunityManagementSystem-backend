@@ -1,6 +1,6 @@
 package com.writingcode.www.community.service.impl;
 
-import com.writingcode.www.community.entity.House;
+import com.writingcode.www.community.entity.po.House;
 import com.writingcode.www.community.dao.HouseMapper;
 import com.writingcode.www.community.service.IHouseService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

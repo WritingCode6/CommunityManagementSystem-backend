@@ -1,6 +1,6 @@
 package com.writingcode.www.community.service.impl;
 
-import com.writingcode.www.community.entity.Repair;
+import com.writingcode.www.community.entity.po.Repair;
 import com.writingcode.www.community.dao.RepairMapper;
 import com.writingcode.www.community.service.IRepairService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

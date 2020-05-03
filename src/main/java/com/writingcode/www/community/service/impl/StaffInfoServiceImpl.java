@@ -1,6 +1,6 @@
 package com.writingcode.www.community.service.impl;
 
-import com.writingcode.www.community.entity.StaffInfo;
+import com.writingcode.www.community.entity.po.StaffInfo;
 import com.writingcode.www.community.dao.StaffInfoMapper;
 import com.writingcode.www.community.service.IStaffInfoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

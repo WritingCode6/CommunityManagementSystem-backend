@@ -1,4 +1,4 @@
-package com.writingcode.www.community.entity;
+package com.writingcode.www.community.entity.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -13,22 +13,22 @@ import java.io.Serializable;
  * @author Chavy
  * @date  2020/05/02
  */
-@TableName("role")
 @Data
 @Accessors(chain = true)
-public class Role implements Serializable {
+@TableName("permission")
+public class Permission implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 主键
+     * 主键id
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
-     * 角色名
+     * 权限名
      */
-    private String roleName;
+    private String permissionName;
 
 }

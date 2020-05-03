@@ -1,4 +1,4 @@
-package com.writingcode.www.community.entity;
+package com.writingcode.www.community.entity.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.time.LocalDateTime;
 import java.io.Serializable;
 
 /**
@@ -16,8 +15,8 @@ import java.io.Serializable;
  */
 @Data
 @Accessors(chain = true)
-@TableName("daily_duty")
-public class DailyDuty implements Serializable {
+@TableName("household_info")
+public class HouseholdInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -28,23 +27,32 @@ public class DailyDuty implements Serializable {
     private Long id;
 
     /**
-     * 值班日期
-     */
-    private LocalDateTime date;
-
-    /**
      * 用户id
      */
-    private Long employeeId;
+    private Long userId;
 
     /**
-     * 值班类型 
+     * 真实姓名
      */
-    private Integer type;
+    private String name;
 
     /**
-     * 值班区域
+     * 身份证
      */
-    private String place;
+    private String idNumber;
 
+    /**
+     * 性别 0-男 1-女
+     */
+    private Integer sex;
+
+    /**
+     * 籍贯
+     */
+    private String ancestralHome;
+
+    /**
+     * 户口所在地
+     */
+    private String residenceAddress;
 }

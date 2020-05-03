@@ -1,7 +1,8 @@
-package com.writingcode.www.community.entity;
+package com.writingcode.www.community.entity.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -15,7 +16,8 @@ import java.io.Serializable;
  */
 @Data
 @Accessors(chain = true)
-public class House implements Serializable {
+@TableName("activity")
+public class Activity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -26,35 +28,38 @@ public class House implements Serializable {
     private Integer id;
 
     /**
-     * 户型
+     * 活动名称
      */
-    private Integer unitType;
+    private String activityName;
 
     /**
-     * 面积
+     * 主办方
      */
-    private Float area;
+    private String host;
 
     /**
-     * 栋数
+     * 负责人名字
      */
-    private Integer buildingNumber;
-
-    private Integer roomNumber;
+    private String principal;
 
     /**
-     * 是否空闲 0-是 1-不是
+     * 咨询电话
      */
-    private Integer isIdle;
+    private String telNumber;
 
     /**
-     * 入住时间
+     * 内容
      */
-    private LocalDateTime checkInTime;
+    private String content;
 
     /**
-     * 用户id 户主
+     * 开始时间
      */
-    private Long userId;
+    private LocalDateTime startTime;
+
+    /**
+     * 结束时间
+     */
+    private LocalDateTime endTime;
 
 }

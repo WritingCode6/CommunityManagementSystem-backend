@@ -1,4 +1,4 @@
-package com.writingcode.www.community.entity;
+package com.writingcode.www.community.entity.po;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -13,19 +13,18 @@ import java.io.Serializable;
  */
 @Data
 @Accessors(chain = true)
-@TableName("house_user")
-public class HouseUser implements Serializable {
+@TableName("role_permission")
+public class RolePermission implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 房屋id
+     * 角色id
      */
-    private Integer houseId;
+    private Integer roleId;
 
     /**
-     * 住户id
+     * 权限id
      */
-    private Long userId;
-
+    private Integer permissionId;
 }

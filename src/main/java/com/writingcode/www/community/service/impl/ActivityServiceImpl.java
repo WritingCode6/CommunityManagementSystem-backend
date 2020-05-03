@@ -1,6 +1,6 @@
 package com.writingcode.www.community.service.impl;
 
-import com.writingcode.www.community.entity.Activity;
+import com.writingcode.www.community.entity.po.Activity;
 import com.writingcode.www.community.dao.ActivityMapper;
 import com.writingcode.www.community.service.IActivityService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

@@ -1,4 +1,4 @@
-package com.writingcode.www.community.entity;
+package com.writingcode.www.community.entity.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -16,8 +16,8 @@ import java.io.Serializable;
  */
 @Data
 @Accessors(chain = true)
-@TableName("activity")
-public class Activity implements Serializable {
+@TableName("feedback")
+public class Feedback implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,41 +25,41 @@ public class Activity implements Serializable {
      * 主键id
      */
     @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    private Long id;
 
     /**
-     * 活动名称
+     * 反馈类型 0-建议 1-投诉
      */
-    private String activityName;
+    private Integer type;
 
     /**
-     * 主办方
+     * 反馈的用户id
      */
-    private String host;
-
-    /**
-     * 负责人名字
-     */
-    private String principal;
-
-    /**
-     * 咨询电话
-     */
-    private String telNumber;
+    private Long userId;
 
     /**
      * 内容
      */
-    private String content;
+    private String details;
 
     /**
-     * 开始时间
+     * 创建时间
      */
-    private LocalDateTime startTime;
+    private LocalDateTime createTime;
 
     /**
-     * 结束时间
+     * 是否被受理 0-否 1-是
      */
-    private LocalDateTime endTime;
+    private Integer isReceived;
+
+    /**
+     * 工作人员id
+     */
+    private Long employeeId;
+
+    /**
+     * 处理结果
+     */
+    private String result;
 
 }

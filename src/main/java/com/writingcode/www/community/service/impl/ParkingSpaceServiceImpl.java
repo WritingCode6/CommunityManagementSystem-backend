@@ -1,6 +1,6 @@
 package com.writingcode.www.community.service.impl;
 
-import com.writingcode.www.community.entity.ParkingSpace;
+import com.writingcode.www.community.entity.po.ParkingSpace;
 import com.writingcode.www.community.dao.ParkingSpaceMapper;
 import com.writingcode.www.community.service.IParkingSpaceService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

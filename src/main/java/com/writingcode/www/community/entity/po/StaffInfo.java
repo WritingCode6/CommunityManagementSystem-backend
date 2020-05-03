@@ -1,4 +1,4 @@
-package com.writingcode.www.community.entity;
+package com.writingcode.www.community.entity.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.time.LocalDateTime;
 import java.io.Serializable;
 
 /**
@@ -16,8 +15,8 @@ import java.io.Serializable;
  */
 @Data
 @Accessors(chain = true)
-@TableName("notice")
-public class Notice implements Serializable {
+@TableName("staff_info")
+public class StaffInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,25 +24,38 @@ public class Notice implements Serializable {
      * 主键id
      */
     @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    private Long id;
 
     /**
-     * 创建时间
+     * 真实姓名
      */
-    private LocalDateTime createTime;
+    private String name;
 
     /**
-     * 发布的工作人员id
+     * 身份证号
      */
-    private Long employeeId;
+    private String idNumber;
 
     /**
-     * 标题
+     * 手机号
      */
-    private String title;
+    private String phone;
 
     /**
-     * 内容
+     * 性别 0-男 1-女
      */
-    private String content;
+    private Integer sex;
+
+    private String address;
+
+    /**
+     * 用户id
+     */
+    private Long userId;
+
+    /**
+     * 工号
+     */
+    private Long serviceId;
+
 }

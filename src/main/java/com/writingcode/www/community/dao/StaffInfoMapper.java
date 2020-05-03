@@ -1,6 +1,6 @@
 package com.writingcode.www.community.dao;
 
-import com.writingcode.www.community.entity.StaffInfo;
+import com.writingcode.www.community.entity.po.StaffInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

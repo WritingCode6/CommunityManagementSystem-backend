@@ -1,6 +1,6 @@
 package com.writingcode.www.community.service.impl;
 
-import com.writingcode.www.community.entity.Notice;
+import com.writingcode.www.community.entity.po.Notice;
 import com.writingcode.www.community.dao.NoticeMapper;
 import com.writingcode.www.community.service.INoticeService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

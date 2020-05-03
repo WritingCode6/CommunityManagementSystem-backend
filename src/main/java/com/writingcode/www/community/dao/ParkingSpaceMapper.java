@@ -1,6 +1,6 @@
 package com.writingcode.www.community.dao;
 
-import com.writingcode.www.community.entity.ParkingSpace;
+import com.writingcode.www.community.entity.po.ParkingSpace;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

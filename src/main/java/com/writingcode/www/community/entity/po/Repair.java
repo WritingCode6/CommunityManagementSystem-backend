@@ -1,6 +1,7 @@
-package com.writingcode.www.community.entity;
+package com.writingcode.www.community.entity.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -50,6 +51,7 @@ public class Repair implements Serializable {
     /**
      * 保修时间
      */
+    @TableField("create_time")
     private LocalDateTime createTime;
 
     /**

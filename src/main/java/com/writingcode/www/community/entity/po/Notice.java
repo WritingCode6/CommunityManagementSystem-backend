@@ -1,11 +1,13 @@
-package com.writingcode.www.community.entity;
+package com.writingcode.www.community.entity.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.time.LocalDateTime;
 import java.io.Serializable;
 
 /**
@@ -15,8 +17,8 @@ import java.io.Serializable;
  */
 @Data
 @Accessors(chain = true)
-@TableName("household_info")
-public class HouseholdInfo implements Serializable {
+@TableName("notice")
+public class Notice implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -24,35 +26,26 @@ public class HouseholdInfo implements Serializable {
      * 主键id
      */
     @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+    private Integer id;
 
     /**
-     * 用户id
+     * 创建时间
      */
-    private Long userId;
+    @TableField("create_time")
+    private LocalDateTime createTime;
 
     /**
-     * 真实姓名
+     * 发布的工作人员id
      */
-    private String name;
+    private Long employeeId;
 
     /**
-     * 身份证
+     * 标题
      */
-    private String idNumber;
+    private String title;
 
     /**
-     * 性别 0-男 1-女
+     * 内容
      */
-    private Integer sex;
-
-    /**
-     * 籍贯
-     */
-    private String ancestralHome;
-
-    /**
-     * 户口所在地
-     */
-    private String residenceAddress;
+    private String content;
 }

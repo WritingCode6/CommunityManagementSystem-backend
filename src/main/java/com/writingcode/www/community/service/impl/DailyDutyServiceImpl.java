@@ -1,6 +1,6 @@
 package com.writingcode.www.community.service.impl;
 
-import com.writingcode.www.community.entity.DailyDuty;
+import com.writingcode.www.community.entity.po.DailyDuty;
 import com.writingcode.www.community.dao.DailyDutyMapper;
 import com.writingcode.www.community.service.IDailyDutyService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

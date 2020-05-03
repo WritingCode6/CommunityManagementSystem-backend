@@ -1,6 +1,6 @@
 package com.writingcode.www.community.service;
 
-import com.writingcode.www.community.entity.Role;
+import com.writingcode.www.community.entity.po.Role;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
