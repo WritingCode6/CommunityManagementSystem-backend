@@ -1,37 +1,27 @@
-package com.writingcode.www.community.entity.po;
+package com.writingcode.www.community.entity.vo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.writingcode.www.community.entity.po.House;
 import lombok.Data;
 import lombok.experimental.Accessors;
+import org.springframework.beans.BeanUtils;
+import org.springframework.util.Assert;
 
 import java.time.LocalDateTime;
-import java.io.Serializable;
 
 /**
- *
  * @author Chavy
- * @date  2020/05/02
+ * @date 2020/5/4
  */
 @Data
 @Accessors(chain = true)
-public class House implements Serializable {
+public class HouseInfoVo {
 
-    private static final long serialVersionUID = 1L;
-
-    public static final String ID = "id";
-    public static final String UNIT_TYPE = "unit_type";
-    public static final String AREA = "area";
-    public static final String BUILDING_NUMBER = "building_number";
-    public static final String ROOM_NUMBER = "room_number";
-    public static final String IS_IDLE = "is_idle";
-    public static final String CHECK_IN_TIME = "check_in_time";
-    public static final String USER_ID = "user_id";
 
     /**
      * 主键id
      */
-    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
@@ -49,6 +39,9 @@ public class House implements Serializable {
      */
     private Integer buildingNumber;
 
+    /**
+     * 房间号
+     */
     private Integer roomNumber;
 
     /**
@@ -66,4 +59,15 @@ public class House implements Serializable {
      */
     private Long userId;
 
+    /**
+     * 真实姓名
+     */
+    private String name;
+
+    public static HouseInfoVo convert(House house){
+        Assert.notNull(house, "house对象不能为空");
+        HouseInfoVo houseInfoVo = new HouseInfoVo();
+        BeanUtils.copyProperties(house, houseInfoVo);
+        return houseInfoVo;
+    }
 }

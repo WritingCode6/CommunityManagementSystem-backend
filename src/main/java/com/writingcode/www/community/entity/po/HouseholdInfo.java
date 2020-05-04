@@ -20,6 +20,14 @@ public class HouseholdInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public static final String ID = "id";
+    public static final String USER_ID = "user_id";
+    public static final String NAME = "name";
+    public static final String ID_NUMBER = "id_number";
+    public static final String SEX = "sex";
+    public static final String ANCESTRAL_HOME = "ancestral_home";
+    public static final String RESIDENCE_ADDRESS = "residence_address";
+
     /**
      * 主键id
      */
