@@ -20,4 +20,11 @@ public interface IUserService extends IService<User> {
      */
     LoginVo login(String userName, String password);
 
+    /**
+     * 登出
+     *
+     * @param userId 用户id
+     */
+    void logout(Long userId);
+
 }

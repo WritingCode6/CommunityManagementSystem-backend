@@ -1,5 +1,6 @@
 package com.writingcode.www.community.service.impl;
 
+import com.writingcode.www.community.auth.source.IDataStore;
 import com.writingcode.www.community.auth.util.SecurityUtil;
 import com.writingcode.www.community.dao.RoleMapper;
 import com.writingcode.www.community.dao.UserRoleMapper;
@@ -34,6 +35,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Resource
     private SecurityUtil securityUtil;
 
+    @Resource
+    private IDataStore dataStore;
+
     @Override
     public LoginVo login(String userName, String password) {
         Assert.notNull(userName, "用户名不能为空");
@@ -51,5 +55,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         String token = securityUtil.login(String.valueOf(user.getId()), null, null);
 
         return new LoginVo().setRoleId(roleId).setUserId(user.getId()).setToken(token);
+    }
+
+    @Override
+    public void logout(Long userId) {
+        Assert.notNull(userId, "用户id不能为空");
+        dataStore.remove(String.valueOf(userId));
     }
 }
