@@ -1,14 +1,14 @@
 package com.writingcode.www.community.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.writingcode.www.community.entity.po.DailyDuty;
+import com.writingcode.www.community.entity.vo.DutyFromVo;
 import com.writingcode.www.community.result.CommonResult;
 import com.writingcode.www.community.service.IDailyDutyService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -48,5 +48,21 @@ public class DailyDutyController {
             return new CommonResult<Void>().success();
         }
         return new CommonResult<Void>().fail();
+    }
+
+    /**
+     * 分页查询值班表
+     * @param date 时间
+     * @param type 类型
+     * @param current 页码 默认1
+     * @param size 页面大小 默认10
+     * @return CommonResult<Page<DutyFromVo>>
+     */
+    @GetMapping("/getDutyInfo")
+    public CommonResult<Page<DutyFromVo>> getDutyInfo(@RequestParam(value = "date", required = false) LocalDateTime date,
+                                                     @RequestParam(value = "type", required = false) Integer type,
+                                                     @RequestParam(value = "current", defaultValue = "1") int current,
+                                                     @RequestParam(value = "size", defaultValue = "10") int size){
+        return new CommonResult<Page<DutyFromVo>>().success(dailyDutyService.getDutyInfo(date, type, new Page<>(current, size)));
     }
 }

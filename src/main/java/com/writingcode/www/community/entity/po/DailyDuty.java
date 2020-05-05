@@ -21,6 +21,12 @@ public class DailyDuty implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public static final String ID = "id";
+    public static final String DATE = "date";
+    public static final String EMPLOYEE_ID = "employee_id";
+    public static final String TYPE = "type";
+    public static final String PLACE = "place";
+
     /**
      * 主键id
      */

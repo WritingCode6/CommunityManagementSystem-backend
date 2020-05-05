@@ -1,8 +1,12 @@
 package com.writingcode.www.community.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.writingcode.www.community.entity.po.DailyDuty;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.writingcode.www.community.entity.vo.DutyFromVo;
+import org.apache.ibatis.annotations.Param;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -25,5 +29,14 @@ public interface IDailyDutyService extends IService<DailyDuty> {
      * @return boolean
      */
     boolean addDutyForm(DailyDuty dailyDuty);
+
+    /**
+     * 分页获取值班表
+     * @param localDateTime 日期
+     * @param type 类型
+     * @param page 分页bean
+     * @return Page<DutyFromVo>
+     */
+    Page<DutyFromVo> getDutyInfo(LocalDateTime localDateTime, Integer type, Page<DutyFromVo> page);
 
 }
