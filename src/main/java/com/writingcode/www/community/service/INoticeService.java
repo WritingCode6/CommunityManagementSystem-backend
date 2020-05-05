@@ -10,4 +10,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface INoticeService extends IService<Notice> {
 
+    /**
+     * 更新社区通知
+     * @param notice 通知
+     * @return boolean
+     */
+    boolean updateCommunityNotice(Notice notice);
 }

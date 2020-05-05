@@ -2,10 +2,10 @@ package com.writingcode.www.community.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.writingcode.www.community.entity.po.Activity;
+import com.writingcode.www.community.entity.po.Notice;
 import com.writingcode.www.community.result.CommonResult;
 import com.writingcode.www.community.service.IActivityService;
-import com.writingcode.www.community.service.impl.ActivityServiceImpl;
-import org.springframework.security.core.parameters.P;
+import com.writingcode.www.community.service.INoticeService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -22,6 +22,9 @@ public class CommunityController {
 
     @Resource
     private IActivityService activityService;
+
+    @Resource
+    private INoticeService noticeService;
 
     /**
      * 批量删除活动
@@ -72,5 +75,18 @@ public class CommunityController {
     public CommonResult<Page<Activity>> getCommunityActivity(@RequestParam(value = "current", defaultValue = "1") int current,
                                                              @RequestParam(value = "size", defaultValue = "10") int size){
         return new CommonResult<Page<Activity>>().success(activityService.getCommunityActivity(new Page<>(current, size)));
+    }
+
+    /**
+     * 更新社区通知
+     * @param notice 通知
+     * @return CommonResult<Void>
+     */
+    @PostMapping("/updateCommunityNotice")
+    public CommonResult<Void> updateCommunityNotice(@RequestBody Notice notice){
+        if(noticeService.updateCommunityNotice(notice)){
+            return new CommonResult<Void>().success();
+        }
+        return new CommonResult<Void>().fail();
     }
 }
