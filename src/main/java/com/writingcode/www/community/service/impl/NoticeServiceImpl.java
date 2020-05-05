@@ -10,6 +10,7 @@ import com.writingcode.www.community.entity.po.StaffInfo;
 import com.writingcode.www.community.service.INoticeService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
@@ -28,6 +29,7 @@ public class NoticeServiceImpl extends ServiceImpl<NoticeMapper, Notice> impleme
     @Resource
     private StaffInfoMapper staffInfoMapper;
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean updateCommunityNotice(Notice notice) {
         Assert.notNull(notice, "更新信息不能为空");
@@ -38,6 +40,7 @@ public class NoticeServiceImpl extends ServiceImpl<NoticeMapper, Notice> impleme
         return true;
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean addCommunityNotice(Notice notice) {
         Assert.notNull(notice, "新增信息不能为空");

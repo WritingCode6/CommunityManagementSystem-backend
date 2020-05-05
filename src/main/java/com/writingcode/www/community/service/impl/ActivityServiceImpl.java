@@ -6,6 +6,7 @@ import com.writingcode.www.community.dao.ActivityMapper;
 import com.writingcode.www.community.service.IActivityService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
@@ -23,6 +24,7 @@ public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity> i
     @Resource
     private ActivityMapper activityMapper;
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean deleteCommunityActivity(List<Integer> activityIds) {
         Assert.state(Objects.nonNull(activityIds), "id列表不能为空");
@@ -32,6 +34,7 @@ public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity> i
         return true;
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean updateCommunityActivity(Activity activity) {
         Assert.notNull(activity, "更新信息不能为空");
@@ -41,6 +44,7 @@ public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity> i
         return true;
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean addCommunityActivity(Activity activity) {
         Assert.notNull(activity, "活动不能为空");
