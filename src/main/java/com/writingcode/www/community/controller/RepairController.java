@@ -1,11 +1,12 @@
 package com.writingcode.www.community.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.writingcode.www.community.entity.po.Repair;
+import com.writingcode.www.community.entity.vo.RepairVo;
 import com.writingcode.www.community.result.CommonResult;
 import com.writingcode.www.community.service.IRepairService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.parameters.P;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -45,5 +46,19 @@ public class RepairController {
             return new CommonResult<Void>().success();
         }
         return new CommonResult<Void>().fail();
+    }
+
+    /**
+     * 分页查询保修单
+     * @param userId 用户id
+     * @param current 页码 默认1
+     * @param size 页面大小 默认10
+     * @return CommonResult<Page<RepairVo>>
+     */
+    @GetMapping("/getRepair")
+    public CommonResult<Page<RepairVo>> getRepair(@RequestParam(value = "userId", required = false) Long userId,
+                                                  @RequestParam(value = "current", defaultValue = "1") int current,
+                                                  @RequestParam(value = "size", defaultValue = "10") int size){
+        return new CommonResult<Page<RepairVo>>().success(repairService.getRepair(userId, new Page<>(current, size)));
     }
 }

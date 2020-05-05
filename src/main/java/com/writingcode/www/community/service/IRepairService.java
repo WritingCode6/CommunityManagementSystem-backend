@@ -1,7 +1,9 @@
 package com.writingcode.www.community.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.writingcode.www.community.entity.po.Repair;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.writingcode.www.community.entity.vo.RepairVo;
 
 /**
  *
@@ -23,5 +25,13 @@ public interface IRepairService extends IService<Repair> {
      * @return boolean
      */
     boolean updateRepair(Repair repair);
+
+    /**
+     * 分页查询保修单
+     * @param userId 用户id
+     * @param page 分页bean
+     * @return Page<RepairVo>
+     */
+    Page<RepairVo> getRepair(Long userId, Page<RepairVo> page);
 
 }
