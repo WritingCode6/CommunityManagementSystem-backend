@@ -10,4 +10,18 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IRepairService extends IService<Repair> {
 
+    /**
+     * 添加保修单
+     * @param repair 保修单
+     * @return boolean
+     */
+    boolean addRepair(Repair repair);
+
+    /**
+     * 更新保修单
+     * @param repair 保修单
+     * @return boolean
+     */
+    boolean updateRepair(Repair repair);
+
 }
