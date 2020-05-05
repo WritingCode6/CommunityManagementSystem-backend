@@ -89,4 +89,17 @@ public class CommunityController {
         }
         return new CommonResult<Void>().fail();
     }
+
+    /**
+     * 新增社区通知
+     * @param notice 通知
+     * @return CommonResult<Void>
+     */
+    @PostMapping("/addCommunityNotice")
+    public CommonResult<Void> addCommunityNotice(@RequestBody Notice notice){
+        if(noticeService.addCommunityNotice(notice)){
+            return new CommonResult<Void>().success();
+        }
+        return new CommonResult<Void>().fail();
+    }
 }

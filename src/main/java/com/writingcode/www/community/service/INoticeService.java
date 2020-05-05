@@ -16,4 +16,11 @@ public interface INoticeService extends IService<Notice> {
      * @return boolean
      */
     boolean updateCommunityNotice(Notice notice);
+
+    /**
+     * 新增社区通知
+     * @param notice 通知
+     * @return boolean
+     */
+    boolean addCommunityNotice(Notice notice);
 }

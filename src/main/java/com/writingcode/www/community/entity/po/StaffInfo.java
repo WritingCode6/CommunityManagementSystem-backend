@@ -20,6 +20,15 @@ public class StaffInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public static final String ID = "id";
+    public static final String NAME = "name";
+    public static final String ID_NUMBER = "id_number";
+    public static final String PHONE = "phone";
+    public static final String SEX = "sex";
+    public static final String ADDRESS = "address";
+    public static final String USER_ID = "user_id";
+    public static final String SERVICE_ID = "service_id";
+
     /**
      * 主键id
      */
