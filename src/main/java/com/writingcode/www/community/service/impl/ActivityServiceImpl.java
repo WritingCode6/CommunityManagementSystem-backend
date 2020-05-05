@@ -39,4 +39,12 @@ public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity> i
         Assert.state(activityMapper.updateById(activity) == 1, "更新失败");
         return true;
     }
+
+    @Override
+    public boolean addCommunityActivity(Activity activity) {
+        Assert.notNull(activity, "活动不能为空");
+
+        Assert.state(activityMapper.insert(activity) == 1, "增加失败");
+        return true;
+    }
 }

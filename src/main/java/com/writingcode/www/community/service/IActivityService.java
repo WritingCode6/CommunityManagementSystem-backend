@@ -28,4 +28,12 @@ public interface IActivityService extends IService<Activity> {
      */
     boolean updateCommunityActivity(Activity activity);
 
+    /**
+     * 增加社区活动
+     *
+     * @param activity 活动
+     * @return boolean
+     */
+    boolean addCommunityActivity(Activity activity);
+
 }

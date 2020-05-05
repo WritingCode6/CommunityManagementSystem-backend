@@ -49,4 +49,17 @@ public class CommunityController {
         }
         return new CommonResult<Void>().fail();
     }
+
+    /**
+     * 增加社区活动
+     * @param activity 活动
+     * @return CommonResult<Void>
+     */
+    @PostMapping("/addCommunityActivity")
+    public CommonResult<Void> addCommunityActivity(@RequestBody Activity activity){
+        if(activityService.addCommunityActivity(activity)){
+            return new CommonResult<Void>().success();
+        }
+        return new CommonResult<Void>().fail();
+    }
 }
