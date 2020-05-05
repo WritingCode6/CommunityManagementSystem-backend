@@ -1,6 +1,7 @@
 package com.writingcode.www.community.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.writingcode.www.community.dao.StaffInfoMapper;
 import com.writingcode.www.community.entity.po.Notice;
@@ -50,5 +51,11 @@ public class NoticeServiceImpl extends ServiceImpl<NoticeMapper, Notice> impleme
         Assert.state(noticeMapper.insert(notice) == 1, "新增失败");
 
         return true;
+    }
+
+    @Override
+    public Page<Notice> getCommunityNotice(Page<Notice> page) {
+        page = noticeMapper.selectPage(page, null);
+        return page;
     }
 }

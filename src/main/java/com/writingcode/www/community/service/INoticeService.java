@@ -1,5 +1,6 @@
 package com.writingcode.www.community.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.writingcode.www.community.entity.po.Notice;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -23,4 +24,11 @@ public interface INoticeService extends IService<Notice> {
      * @return boolean
      */
     boolean addCommunityNotice(Notice notice);
+
+    /**
+     * 分页获取社区通知
+     * @param page 分页bean
+     * @return Page<Notice>
+     */
+    Page<Notice> getCommunityNotice(Page<Notice> page);
 }

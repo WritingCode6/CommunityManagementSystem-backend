@@ -6,6 +6,7 @@ import com.writingcode.www.community.entity.po.Notice;
 import com.writingcode.www.community.result.CommonResult;
 import com.writingcode.www.community.service.IActivityService;
 import com.writingcode.www.community.service.INoticeService;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -101,5 +102,17 @@ public class CommunityController {
             return new CommonResult<Void>().success();
         }
         return new CommonResult<Void>().fail();
+    }
+
+    /**
+     * 分页获取社区通知
+     * @param current 页码 默认1
+     * @param size 页面大小 默认10
+     * @return CommonResult<Page<Notice>>
+     */
+    @GetMapping("/getCommunityNotice")
+    public CommonResult<Page<Notice>> getCommunityNotice(@RequestParam(value = "current", defaultValue = "1") int current,
+                                                 @RequestParam(value = "size", defaultValue = "10") int size){
+        return new CommonResult<Page<Notice>>().success(noticeService.getCommunityNotice(new Page<>(current, size)));
     }
 }
