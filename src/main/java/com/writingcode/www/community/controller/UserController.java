@@ -62,9 +62,27 @@ public class UserController {
         return new CommonResult<StaffInfo>().success(staffInfoService.getStaffInfo(userId));
     }
 
+    /**
+     * 更新住户信息
+     * @param householdInfo 住户信息
+     * @return CommonResult<Void>
+     */
     @PostMapping("/updateUserInfo")
     public CommonResult<Void> updateUserInfo(@RequestBody HouseholdInfo householdInfo){
         if(householdInfoService.updateUserInfo(householdInfo)){
+            return new CommonResult<Void>().success();
+        }
+        return new CommonResult<Void>().fail();
+    }
+
+    /**
+     * 更新工作人员信息
+     * @param staffInfo 工作人员信息
+     * @return CommonResult<Void>
+     */
+    @PostMapping("/updateStaffInfo")
+    public CommonResult<Void> updateStaffInfo(@RequestBody StaffInfo staffInfo){
+        if(staffInfoService.updateStaffInfo(staffInfo)){
             return new CommonResult<Void>().success();
         }
         return new CommonResult<Void>().fail();

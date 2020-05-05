@@ -37,4 +37,13 @@ public class StaffInfoServiceImpl extends ServiceImpl<StaffInfoMapper, StaffInfo
         Assert.notNull(staffInfo, "该用户不是工作人员");
         return staffInfo;
     }
+
+    @Override
+    public boolean updateStaffInfo(StaffInfo staffInfo) {
+        Assert.notNull(staffInfo, "更新内容不能为空");
+        Assert.notNull(staffInfo.getId(), "id不能为空");
+
+        Assert.state(staffInfoMapper.updateById(staffInfo) == 1, "更新失败");
+        return true;
+    }
 }

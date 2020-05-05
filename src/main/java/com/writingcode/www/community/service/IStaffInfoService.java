@@ -16,4 +16,11 @@ public interface IStaffInfoService extends IService<StaffInfo> {
      * @return StaffInfo
      */
     StaffInfo getStaffInfo(Long userId);
+
+    /**
+     * 更新员工信息
+     * @param staffInfo 员工信息
+     * @return boolean
+     */
+    boolean updateStaffInfo(StaffInfo staffInfo);
 }
