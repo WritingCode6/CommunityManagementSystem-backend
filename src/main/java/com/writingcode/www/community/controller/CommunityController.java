@@ -1,13 +1,12 @@
 package com.writingcode.www.community.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.writingcode.www.community.entity.po.Activity;
 import com.writingcode.www.community.result.CommonResult;
 import com.writingcode.www.community.service.IActivityService;
 import com.writingcode.www.community.service.impl.ActivityServiceImpl;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.parameters.P;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -61,5 +60,17 @@ public class CommunityController {
             return new CommonResult<Void>().success();
         }
         return new CommonResult<Void>().fail();
+    }
+
+    /**
+     * 分页查询社区活动
+     * @param current 页码 默认1
+     * @param size 页面大小 默认10
+     * @return CommonResult<Page<Activity>>
+     */
+    @GetMapping("/getCommunityActivity")
+    public CommonResult<Page<Activity>> getCommunityActivity(@RequestParam(value = "current", defaultValue = "1") int current,
+                                                             @RequestParam(value = "size", defaultValue = "10") int size){
+        return new CommonResult<Page<Activity>>().success(activityService.getCommunityActivity(new Page<>(current, size)));
     }
 }

@@ -1,5 +1,6 @@
 package com.writingcode.www.community.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.writingcode.www.community.entity.po.Activity;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -35,5 +36,12 @@ public interface IActivityService extends IService<Activity> {
      * @return boolean
      */
     boolean addCommunityActivity(Activity activity);
+
+    /**
+     * 分页查询社区活动
+     * @param page 分页bean
+     * @return Page<Activity>
+     */
+    Page<Activity> getCommunityActivity(Page<Activity> page);
 
 }

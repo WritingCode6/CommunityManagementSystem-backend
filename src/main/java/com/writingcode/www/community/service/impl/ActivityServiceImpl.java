@@ -1,5 +1,6 @@
 package com.writingcode.www.community.service.impl;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.writingcode.www.community.entity.po.Activity;
 import com.writingcode.www.community.dao.ActivityMapper;
 import com.writingcode.www.community.service.IActivityService;
@@ -46,5 +47,11 @@ public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity> i
 
         Assert.state(activityMapper.insert(activity) == 1, "增加失败");
         return true;
+    }
+
+    @Override
+    public Page<Activity> getCommunityActivity(Page<Activity> page) {
+        page = activityMapper.selectPage(page, null);
+        return page;
     }
 }
