@@ -2,4 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.writingcode.www.community.dao.HouseMapper">
 
+
+    <select id="selectHouseByUserId" parameterType="Long" resultType="com.writingcode.www.community.entity.po.House">
+        SELECT room_number, building_number FROM house WHERE id =
+        (SELECT house_id FROM house_user WHERE user_id = #{userId})
+    </select>
 </mapper>

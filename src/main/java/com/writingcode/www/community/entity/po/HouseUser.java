@@ -18,6 +18,9 @@ public class HouseUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public static final String HOUSE_ID = "house_id";
+    public static final String USER_ID = "user_id";
+
     /**
      * 房屋id
      */
