@@ -46,10 +46,7 @@ public class NoticeServiceImpl extends ServiceImpl<NoticeMapper, Notice> impleme
         Assert.notNull(notice, "新增信息不能为空");
         Assert.notNull(notice.getEmployeeId(), "用户id不能为空");
 
-        QueryWrapper<StaffInfo> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq(StaffInfo.USER_ID, notice.getEmployeeId());
-
-        Assert.notNull(staffInfoMapper.selectOne(queryWrapper), "用户不存在或不是工作人员");
+        Assert.state(staffInfoMapper.selectStaffExist(notice.getEmployeeId()), "用户不存在或不是工作人员");
 
         Assert.state(noticeMapper.insert(notice) == 1, "新增失败");
 

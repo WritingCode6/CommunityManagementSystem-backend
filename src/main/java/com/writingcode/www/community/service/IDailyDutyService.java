@@ -19,4 +19,11 @@ public interface IDailyDutyService extends IService<DailyDuty> {
      */
     boolean deleteDuty(List<Long> ids);
 
+    /**
+     * 新增值班信息
+     * @param dailyDuty 值班信息
+     * @return boolean
+     */
+    boolean addDutyForm(DailyDuty dailyDuty);
+
 }

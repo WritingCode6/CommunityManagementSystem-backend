@@ -38,7 +38,7 @@ public class DailyDuty implements Serializable {
     private Long employeeId;
 
     /**
-     * 值班类型 
+     * 值班类型  0清洁/1巡查/2安保
      */
     private Integer type;
 
