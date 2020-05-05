@@ -6,7 +6,6 @@ import com.writingcode.www.community.entity.po.Notice;
 import com.writingcode.www.community.result.CommonResult;
 import com.writingcode.www.community.service.IActivityService;
 import com.writingcode.www.community.service.INoticeService;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
