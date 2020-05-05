@@ -3,6 +3,7 @@ package com.writingcode.www.community.service;
 import com.writingcode.www.community.entity.po.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.writingcode.www.community.entity.vo.LoginVo;
+import com.writingcode.www.community.entity.vo.UserDetailVo;
 
 /**
  *
@@ -26,5 +27,12 @@ public interface IUserService extends IService<User> {
      * @param userId 用户id
      */
     void logout(Long userId);
+
+    /**
+     * 查看住户的个人信息
+     * @param userId 用户id
+     * @return UserDetailVo
+     */
+    UserDetailVo getUserInfo(Long userId);
 
 }

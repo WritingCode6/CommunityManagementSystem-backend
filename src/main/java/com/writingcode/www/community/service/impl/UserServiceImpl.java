@@ -2,12 +2,10 @@ package com.writingcode.www.community.service.impl;
 
 import com.writingcode.www.community.auth.source.IDataStore;
 import com.writingcode.www.community.auth.util.SecurityUtil;
-import com.writingcode.www.community.dao.RoleMapper;
-import com.writingcode.www.community.dao.UserRoleMapper;
-import com.writingcode.www.community.entity.po.Role;
-import com.writingcode.www.community.entity.po.User;
-import com.writingcode.www.community.dao.UserMapper;
+import com.writingcode.www.community.dao.*;
+import com.writingcode.www.community.entity.po.*;
 import com.writingcode.www.community.entity.vo.LoginVo;
+import com.writingcode.www.community.entity.vo.UserDetailVo;
 import com.writingcode.www.community.service.IUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
@@ -38,6 +36,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Resource
     private IDataStore dataStore;
 
+    @Resource
+    private HouseMapper houseMapper;
+
+    @Resource
+    private HouseholdInfoMapper householdInfoMapper;
+
+    @Resource
+    private CarMapper carMapper;
+
     @Override
     public LoginVo login(String userName, String password) {
         Assert.notNull(userName, "用户名不能为空");
@@ -61,5 +68,23 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     public void logout(Long userId) {
         Assert.notNull(userId, "用户id不能为空");
         dataStore.remove(String.valueOf(userId));
+    }
+
+    @Override
+    public UserDetailVo getUserInfo(Long userId) {
+        Assert.notNull(userId, "用户id不能为空");
+
+        Assert.notNull(userMapper.selectById(userId), "该用户不存在");
+
+        UserDetailVo userDetailVo = new UserDetailVo();
+
+        House house = houseMapper.selectHouseByUserId(userId);
+
+        HouseholdInfo householdInfo = householdInfoMapper.selectByUserId(userId);
+
+        Car car = carMapper.selectByUserId(userId);
+
+        userDetailVo.setCarInfo(car).setHouseInfo(house).setUserInfo(householdInfo);
+        return userDetailVo;
     }
 }

@@ -20,6 +20,13 @@ public class Car implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public static final String ID = "id";
+    public static final String USER_ID = "user_id";
+    public static final String PLATE_NUMBER = "plate_number";
+    public static final String BRAND = "brand";
+    public static final String MODEL = "model";
+    public static final String COLOR = "color";
+
     /**
      * 车主用户id
      */
