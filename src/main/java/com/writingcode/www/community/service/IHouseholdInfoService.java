@@ -21,4 +21,11 @@ public interface IHouseholdInfoService extends IService<HouseholdInfo> {
      * @return List<HouseUserVo>
      */
     List<HouseUserVo> searchUser(String name, Integer buildingNum, Integer roomNum);
+
+    /**
+     * 更新住户信息
+     * @param householdInfo 住户信息
+     * @return boolean
+     */
+    boolean updateUserInfo(HouseholdInfo householdInfo);
 }

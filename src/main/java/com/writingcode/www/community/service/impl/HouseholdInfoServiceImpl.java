@@ -13,6 +13,7 @@ import com.writingcode.www.community.entity.vo.HouseUserVo;
 import com.writingcode.www.community.service.IHouseholdInfoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
 import java.util.LinkedList;
@@ -88,5 +89,14 @@ public class HouseholdInfoServiceImpl extends ServiceImpl<HouseholdInfoMapper, H
             houseUserVos.add(houseUserVo);
         }
         return houseUserVos;
+    }
+
+    @Override
+    public boolean updateUserInfo(HouseholdInfo householdInfo) {
+        Assert.notNull(householdInfo, "更新内容不能为空");
+        Assert.notNull(householdInfo.getId(), "主键不能为空");
+
+        Assert.state(householdInfoMapper.updateById(householdInfo) == 1, "更新失败");
+        return true;
     }
 }

@@ -1,9 +1,11 @@
 package com.writingcode.www.community.controller;
 
+import com.writingcode.www.community.entity.po.HouseholdInfo;
 import com.writingcode.www.community.entity.po.StaffInfo;
 import com.writingcode.www.community.entity.po.User;
 import com.writingcode.www.community.entity.vo.UserDetailVo;
 import com.writingcode.www.community.result.CommonResult;
+import com.writingcode.www.community.service.IHouseholdInfoService;
 import com.writingcode.www.community.service.IStaffInfoService;
 import com.writingcode.www.community.service.IUserService;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +25,9 @@ public class UserController {
 
     @Resource
     private IStaffInfoService staffInfoService;
+
+    @Resource
+    private IHouseholdInfoService householdInfoService;
 
     /**
      * 查看住户的个人信息
@@ -55,5 +60,13 @@ public class UserController {
     @GetMapping("/getStaffInfo")
     public CommonResult<StaffInfo> getStaffInfo(@RequestParam("userId") Long userId){
         return new CommonResult<StaffInfo>().success(staffInfoService.getStaffInfo(userId));
+    }
+
+    @PostMapping("/updateUserInfo")
+    public CommonResult<Void> updateUserInfo(@RequestBody HouseholdInfo householdInfo){
+        if(householdInfoService.updateUserInfo(householdInfo)){
+            return new CommonResult<Void>().success();
+        }
+        return new CommonResult<Void>().fail();
     }
 }
