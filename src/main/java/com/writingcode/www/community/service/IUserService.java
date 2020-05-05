@@ -35,4 +35,11 @@ public interface IUserService extends IService<User> {
      */
     UserDetailVo getUserInfo(Long userId);
 
+    /**
+     * 更新用户信息
+     * @param user 用户信息
+     * @return boolean
+     */
+    boolean updateAccount(User user);
+
 }

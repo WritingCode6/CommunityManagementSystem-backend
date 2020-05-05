@@ -10,4 +10,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IStaffInfoService extends IService<StaffInfo> {
 
+    /**
+     * 获取工作人员详细信息
+     * @param userId 用户id
+     * @return StaffInfo
+     */
+    StaffInfo getStaffInfo(Long userId);
 }

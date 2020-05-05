@@ -1,12 +1,12 @@
 package com.writingcode.www.community.controller;
 
+import com.writingcode.www.community.entity.po.StaffInfo;
+import com.writingcode.www.community.entity.po.User;
 import com.writingcode.www.community.entity.vo.UserDetailVo;
 import com.writingcode.www.community.result.CommonResult;
+import com.writingcode.www.community.service.IStaffInfoService;
 import com.writingcode.www.community.service.IUserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -21,6 +21,9 @@ public class UserController {
     @Resource
     private IUserService userService;
 
+    @Resource
+    private IStaffInfoService staffInfoService;
+
     /**
      * 查看住户的个人信息
      * @param userId 用户id
@@ -29,5 +32,28 @@ public class UserController {
     @GetMapping("/getUserInfo")
     public CommonResult<UserDetailVo> getUserInfo(@RequestParam("userId") Long userId){
         return new CommonResult<UserDetailVo>().success(userService.getUserInfo(userId));
+    }
+
+    /**
+     * 更新用户账号信息【管理员，用户】
+     * @param user 用户
+     * @return CommonResult<Void>
+     */
+    @PostMapping("/updateAccount")
+    public CommonResult<Void> updateAccount(@RequestBody User user){
+        if(userService.updateAccount(user)){
+            return new CommonResult<Void>().success();
+        }
+        return new CommonResult<Void>().fail();
+    }
+
+    /**
+     * 获取工作人员详细信息
+     * @param userId 用户id
+     * @return CommonResult<StaffInfo>
+     */
+    @GetMapping("/getStaffInfo")
+    public CommonResult<StaffInfo> getStaffInfo(@RequestParam("userId") Long userId){
+        return new CommonResult<StaffInfo>().success(staffInfoService.getStaffInfo(userId));
     }
 }

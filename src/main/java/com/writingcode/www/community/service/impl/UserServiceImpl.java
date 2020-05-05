@@ -1,5 +1,6 @@
 package com.writingcode.www.community.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.writingcode.www.community.auth.source.IDataStore;
 import com.writingcode.www.community.auth.util.SecurityUtil;
 import com.writingcode.www.community.dao.*;
@@ -78,13 +79,30 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
         UserDetailVo userDetailVo = new UserDetailVo();
 
-        House house = houseMapper.selectHouseByUserId(userId);
-
         HouseholdInfo householdInfo = householdInfoMapper.selectByUserId(userId);
+
+        Assert.notNull(householdInfo, "该用户不是住户");
+
+        House house = houseMapper.selectHouseByUserId(userId);
 
         Car car = carMapper.selectByUserId(userId);
 
         userDetailVo.setCarInfo(car).setHouseInfo(house).setUserInfo(householdInfo);
         return userDetailVo;
+    }
+
+    @Override
+    public boolean updateAccount(User user) {
+        Assert.notNull(user, "更新内容不能为空");
+        Assert.notNull(user.getId(), "用户id不能为空");
+
+        if(user.getUserName() != null){
+            QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq(User.USER_NAME, user.getUserName());
+            Assert.state(userMapper.selectOne(queryWrapper) == null, "用户名已存在");
+        }
+
+        Assert.state(userMapper.updateById(user) == 1, "更新失败");
+        return true;
     }
 }
