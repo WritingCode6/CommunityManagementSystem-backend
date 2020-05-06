@@ -45,6 +45,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @Override
     public LoginVo login(User user) {
+        Assert.notNull(user, "不能为空");
         Assert.notNull(user.getUserName(), "用户名不能为空");
         Assert.notNull(user.getPassword(), "密码不能为空");
 

@@ -22,9 +22,6 @@ public class IStaffInfoServiceTest {
 
     @Test
     void getStaffInfo() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> staffInfoService.getStaffInfo(null));
-        Assertions.assertThrows(IllegalArgumentException.class, () -> staffInfoService.getStaffInfo(1000L));
-        Assertions.assertThrows(IllegalArgumentException.class, () -> staffInfoService.getStaffInfo(2L));
         Assertions.assertNotNull(staffInfoService.getStaffInfo(3L));
     }
 

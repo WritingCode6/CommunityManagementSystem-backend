@@ -3,7 +3,6 @@ package com.writingcode.www.community.entity.po;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.sun.xml.internal.bind.v2.model.core.ID;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
