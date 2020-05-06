@@ -1,6 +1,7 @@
 package com.writingcode.www.community.entity.po;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -43,6 +44,7 @@ public class Feedback implements Serializable {
     /**
      * 创建时间
      */
+    @JsonFormat( pattern = "yyyy-MM-dd HH:mm:ss")
     @TableField(value = "create_time", fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 

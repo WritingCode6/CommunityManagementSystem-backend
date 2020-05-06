@@ -2,6 +2,7 @@ package com.writingcode.www.community.entity.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -59,6 +60,7 @@ public class House implements Serializable {
     /**
      * 入住时间
      */
+    @JsonFormat( pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime checkInTime;
 
     /**

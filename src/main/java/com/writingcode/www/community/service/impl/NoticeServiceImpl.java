@@ -34,6 +34,7 @@ public class NoticeServiceImpl extends ServiceImpl<NoticeMapper, Notice> impleme
     public boolean updateCommunityNotice(Notice notice) {
         Assert.notNull(notice, "更新信息不能为空");
         Assert.notNull(notice.getId(), "主键不能为空");
+        Assert.state(notice.getTitle() != null || notice.getContent() != null, "更新内容不能为空");
 
         Assert.state(noticeMapper.updateById(notice) == 1, "更新失败");
 
