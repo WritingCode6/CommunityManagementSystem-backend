@@ -10,4 +10,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IFeedbackService extends IService<Feedback> {
 
+    /**
+     * 增加反馈
+     * @param feedback 反馈
+     * @return boolean
+     */
+    boolean addFeedback(Feedback feedback);
+
 }
