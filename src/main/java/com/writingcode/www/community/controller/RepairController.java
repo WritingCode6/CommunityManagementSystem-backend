@@ -28,7 +28,7 @@ public class RepairController {
      * @return CommonResult<Void>
      */
     @PostMapping("/addRepair")
-    public CommonResult<Void> addRepair(Repair repair){
+    public CommonResult<Void> addRepair(@RequestBody Repair repair){
         if(repairService.addRepair(repair)){
             return new CommonResult<Void>().success();
         }
@@ -41,7 +41,7 @@ public class RepairController {
      * @return CommonResult<Void>
      */
     @PostMapping("/updateRepair")
-    public CommonResult<Void> updateRepair(Repair repair){
+    public CommonResult<Void> updateRepair(@RequestBody Repair repair){
         if(repairService.updateRepair(repair)){
             return new CommonResult<Void>().success();
         }

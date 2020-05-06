@@ -16,6 +16,8 @@ spring:
       charset: UTF-8
       force: true
       enabled: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
 
 # mybatis plus
 mybatis-plus:
