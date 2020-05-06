@@ -1,7 +1,9 @@
 package com.writingcode.www.community.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.writingcode.www.community.entity.po.Feedback;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.writingcode.www.community.entity.vo.FeedbackVo;
 
 /**
  *
@@ -23,5 +25,12 @@ public interface IFeedbackService extends IService<Feedback> {
      * @return boolean
      */
     boolean updateFeedback(Feedback feedback);
+
+    /**
+     * 分页获取反馈信息
+     * @param page 分页信息
+     * @return Page<FeedbackVo>
+     */
+    Page<FeedbackVo> getFeedback(Page<FeedbackVo> page);
 
 }
