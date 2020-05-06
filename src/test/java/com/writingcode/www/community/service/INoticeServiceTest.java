@@ -1,4 +1,4 @@
-package com.writingcode.www.community.service.impl;
+package com.writingcode.www.community.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.writingcode.www.community.entity.po.Notice;
@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
-public class NoticeServiceImplTest {
+public class INoticeServiceTest {
 
     @Resource
     private INoticeService noticeService;
