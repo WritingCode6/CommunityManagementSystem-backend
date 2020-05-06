@@ -35,7 +35,9 @@ public class LoginController {
 
     @GetMapping("/logout")
     public CommonResult<Void> logout(Long userId){
-        userService.logout(userId);
-        return new CommonResult<Void>().success();
+        if(userService.logout(userId)){
+            return new CommonResult<Void>().success();
+        }
+        return new CommonResult<Void>().fail();
     }
 }

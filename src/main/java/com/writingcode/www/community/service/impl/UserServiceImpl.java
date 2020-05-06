@@ -66,9 +66,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     }
 
     @Override
-    public void logout(Long userId) {
+    public boolean logout(Long userId) {
         Assert.notNull(userId, "用户id不能为空");
-        dataStore.remove(String.valueOf(userId));
+        return dataStore.remove(String.valueOf(userId));
     }
 
     @Override

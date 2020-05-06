@@ -25,8 +25,9 @@ public interface IUserService extends IService<User> {
      * 登出
      *
      * @param userId 用户id
+     * @return boolean
      */
-    void logout(Long userId);
+    boolean logout(Long userId);
 
     /**
      * 查看住户的个人信息
