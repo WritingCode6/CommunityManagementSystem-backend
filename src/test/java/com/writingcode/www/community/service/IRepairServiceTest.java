@@ -31,6 +31,8 @@ public class IRepairServiceTest {
         Assertions.assertTrue(repairService.addRepair(new Repair().setUserId(2L).setReason("Ha").setPlace("撤唆")));
     }
 
+    @Rollback
+    @Transactional
     @Test
     void updateRepair() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> repairService.updateRepair(null));

@@ -45,6 +45,8 @@ public class NoticeServiceImpl extends ServiceImpl<NoticeMapper, Notice> impleme
     public boolean addCommunityNotice(Notice notice) {
         Assert.notNull(notice, "新增信息不能为空");
         Assert.notNull(notice.getEmployeeId(), "用户id不能为空");
+        Assert.notNull(notice.getTitle(), "标题不能为空");
+        Assert.notNull(notice.getContent(), "内容不能为空");
 
         Assert.state(staffInfoMapper.selectStaffExist(notice.getEmployeeId()), "用户不存在或不是工作人员");
 
