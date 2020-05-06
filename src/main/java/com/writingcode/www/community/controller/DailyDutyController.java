@@ -1,14 +1,18 @@
 package com.writingcode.www.community.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.writingcode.www.community.entity.po.DailyDuty;
 import com.writingcode.www.community.entity.vo.DutyFromVo;
 import com.writingcode.www.community.result.CommonResult;
 import com.writingcode.www.community.service.IDailyDutyService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -59,7 +63,7 @@ public class DailyDutyController {
      * @return CommonResult<Page<DutyFromVo>>
      */
     @GetMapping("/getDutyInfo")
-    public CommonResult<Page<DutyFromVo>> getDutyInfo(@RequestParam(value = "date", required = false) LocalDateTime date,
+    public CommonResult<Page<DutyFromVo>> getDutyInfo(@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam(value = "date", required = false) LocalDateTime date,
                                                      @RequestParam(value = "type", required = false) Integer type,
                                                      @RequestParam(value = "current", defaultValue = "1") int current,
                                                      @RequestParam(value = "size", defaultValue = "10") int size){
