@@ -44,22 +44,22 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     private CarMapper carMapper;
 
     @Override
-    public LoginVo login(String userName, String password) {
-        Assert.notNull(userName, "用户名不能为空");
-        Assert.notNull(password, "密码不能为空");
+    public LoginVo login(User user) {
+        Assert.notNull(user.getUserName(), "用户名不能为空");
+        Assert.notNull(user.getPassword(), "密码不能为空");
 
-        User user = userMapper.selectUserByLogin(userName, password);
-        Assert.notNull(user, "该用户不存在");
+        User tempUser = userMapper.selectUserByLogin(user.getUserName(), user.getPassword());
+        Assert.notNull(tempUser, "该用户不存在");
 
-        Integer roleId = userRoleMapper.selectRoleIdByUserId(user.getId());
+        Integer roleId = userRoleMapper.selectRoleIdByUserId(tempUser.getId());
         Assert.notNull(roleId, "系统错误");
 
         Role role = roleMapper.selectById(roleId);
         Assert.notNull(role, "系统错误");
 
-        String token = securityUtil.login(String.valueOf(user.getId()), null, null);
+        String token = securityUtil.login(String.valueOf(tempUser.getId()), null, null);
 
-        return new LoginVo().setRoleId(roleId).setUserId(user.getId()).setToken(token);
+        return new LoginVo().setRoleId(roleId).setUserId(tempUser.getId()).setToken(token);
     }
 
     @Override

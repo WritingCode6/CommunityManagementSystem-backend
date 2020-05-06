@@ -15,11 +15,10 @@ public interface IUserService extends IService<User> {
     /**
      * 登录
      *
-     * @param userName 账号
-     * @param password 密码
+     * @param user 账号密码
      * @return 鉴权jwt
      */
-    LoginVo login(String userName, String password);
+    LoginVo login(User user);
 
     /**
      * 查看住户的个人信息

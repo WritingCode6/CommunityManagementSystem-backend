@@ -22,11 +22,11 @@ public class IUserServiceTest {
 
     @Test
     void login() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> userService.login(null, null));
-        Assertions.assertThrows(IllegalArgumentException.class, () -> userService.login("root", null));
-        Assertions.assertThrows(IllegalArgumentException.class, () -> userService.login(null, "123456"));
-        Assertions.assertThrows(IllegalArgumentException.class, () -> userService.login("not", "123456"));
-        Assertions.assertNotNull(userService.login("root", "123456"));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> userService.login(null));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> userService.login(new User().setUserName("root")));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> userService.login(new User().setPassword("123456")));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> userService.login(new User().setUserName("root").setPassword("1234567")));
+        Assertions.assertNotNull(userService.login(new User().setUserName("root").setPassword("123456")));
     }
 
     @Test
