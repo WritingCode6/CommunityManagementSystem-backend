@@ -3,12 +3,11 @@ package com.writingcode.www.community.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.writingcode.www.community.dao.HouseholdInfoMapper;
-import com.writingcode.www.community.dao.StaffInfoMapper;
+import com.writingcode.www.community.dao.*;
 import com.writingcode.www.community.entity.po.HouseholdInfo;
 import com.writingcode.www.community.entity.po.Repair;
-import com.writingcode.www.community.dao.RepairMapper;
 import com.writingcode.www.community.entity.po.StaffInfo;
+import com.writingcode.www.community.entity.po.UserRole;
 import com.writingcode.www.community.entity.vo.RepairVo;
 import com.writingcode.www.community.service.IRepairService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -36,12 +35,23 @@ public class RepairServiceImpl extends ServiceImpl<RepairMapper, Repair> impleme
     @Resource
     private StaffInfoMapper staffInfoMapper;
 
+    @Resource
+    private UserMapper userMapper;
+
+    @Resource
+    private UserRoleMapper userRoleMapper;
+
     @Override
     public boolean addRepair(Repair repair) {
         Assert.notNull(repair, "保修单不能为空");
         Assert.notNull(repair.getReason(), "保修内容不能为空");
         Assert.notNull(repair.getUserId(), "保修用户id不能为空");
         Assert.notNull(repair.getPlace(), "保修地不能为空");
+
+        Assert.notNull(userMapper.selectById(repair.getUserId()), "该用户不存在");
+        QueryWrapper<UserRole> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq(UserRole.USER_ID, repair.getUserId());
+        Assert.state(userRoleMapper.selectOne(queryWrapper).getRoleId() == 2, "该用户不是住户");
 
         Assert.state(repairMapper.insert(repair) == 1, "新增失败");
         return true;
