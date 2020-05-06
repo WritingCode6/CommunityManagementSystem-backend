@@ -11,6 +11,7 @@ import com.writingcode.www.community.service.IUserService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author Chavy
@@ -58,8 +59,8 @@ public class UserController {
      * @return CommonResult<StaffInfo>
      */
     @GetMapping("/getStaffInfo")
-    public CommonResult<StaffInfo> getStaffInfo(@RequestParam("userId") Long userId){
-        return new CommonResult<StaffInfo>().success(staffInfoService.getStaffInfo(userId));
+    public CommonResult<List<StaffInfo>> getStaffInfo(@RequestParam(value = "userId", required = false) Long userId){
+        return new CommonResult<List<StaffInfo>>().success(staffInfoService.getStaffInfo(userId));
     }
 
     /**

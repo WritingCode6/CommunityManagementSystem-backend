@@ -1,5 +1,6 @@
 package com.writingcode.www.community.entity.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.writingcode.www.community.entity.po.Repair;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -51,6 +52,7 @@ public class RepairVo {
     /**
      * 保修时间
      */
+    @JsonFormat( pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;
 
     /**

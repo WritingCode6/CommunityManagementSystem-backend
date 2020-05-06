@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  *
@@ -26,16 +27,15 @@ public class StaffInfoServiceImpl extends ServiceImpl<StaffInfoMapper, StaffInfo
     private UserMapper userMapper;
 
     @Override
-    public StaffInfo getStaffInfo(Long userId) {
-        Assert.notNull(userId, "用户id不能为空");
-        Assert.notNull(userMapper.selectById(userId), "该用户不存在");
-
+    public List<StaffInfo> getStaffInfo(Long userId) {
         QueryWrapper<StaffInfo> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq(StaffInfo.USER_ID, userId);
-        StaffInfo staffInfo = staffInfoMapper.selectOne(queryWrapper);
+        if(userId != null) {
+            Assert.notNull(userMapper.selectById(userId), "该用户不存在");
 
-        Assert.notNull(staffInfo, "该用户不是工作人员");
-        return staffInfo;
+            queryWrapper.eq(StaffInfo.USER_ID, userId);
+        }
+
+        return staffInfoMapper.selectList(queryWrapper);
     }
 
     @Override

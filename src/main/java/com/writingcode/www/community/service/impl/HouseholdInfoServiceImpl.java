@@ -60,6 +60,8 @@ public class HouseholdInfoServiceImpl extends ServiceImpl<HouseholdInfoMapper, H
             if(!userIds.isEmpty()){
                 householdInfoQueryWrapper.in(HouseholdInfo.USER_ID, userIds);
             }
+        }else {
+            return null;
         }
 
         if(name != null){

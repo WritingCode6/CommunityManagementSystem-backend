@@ -2,6 +2,7 @@ package com.writingcode.www.community.entity.vo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.writingcode.www.community.entity.po.House;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -52,6 +53,7 @@ public class HouseInfoVo {
     /**
      * 入住时间
      */
+    @JsonFormat( pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime checkInTime;
 
     /**

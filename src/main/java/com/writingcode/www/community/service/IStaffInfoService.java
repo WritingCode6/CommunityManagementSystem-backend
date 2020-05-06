@@ -3,6 +3,8 @@ package com.writingcode.www.community.service;
 import com.writingcode.www.community.entity.po.StaffInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  *
  * @author Chavy
@@ -15,7 +17,7 @@ public interface IStaffInfoService extends IService<StaffInfo> {
      * @param userId 用户id
      * @return StaffInfo
      */
-    StaffInfo getStaffInfo(Long userId);
+    List<StaffInfo> getStaffInfo(Long userId);
 
     /**
      * 更新员工信息

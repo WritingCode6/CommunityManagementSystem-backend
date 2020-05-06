@@ -1,5 +1,6 @@
 package com.writingcode.www.community.entity.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.writingcode.www.community.entity.po.DailyDuty;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -25,6 +26,7 @@ public class DutyFromVo {
     /**
      * 值班日期
      */
+    @JsonFormat( pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime date;
 
     /**
