@@ -39,7 +39,8 @@ public class DailyDutyServiceImpl extends ServiceImpl<DailyDutyMapper, DailyDuty
     @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean deleteDuty(List<Long> ids) {
-        Assert.state(Objects.nonNull(ids), "删除主键id不能为空");
+        Assert.notNull(ids, "删除主键id不能为空");
+        Assert.state(!ids.isEmpty(), "删除主键id不能为空");
         Assert.state(dailyDutyMapper.deleteBatchIds(ids) == ids.size(), "删除失败");
         return true;
     }
