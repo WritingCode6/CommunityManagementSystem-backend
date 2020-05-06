@@ -80,11 +80,13 @@ public class HouseholdInfoServiceImpl extends ServiceImpl<HouseholdInfoMapper, H
 
             Car car = carMapper.selectOne(queryWrapper);
 
+            if(car != null){
+                houseUserVo.setPlateNumber(car.getPlateNumber());
+            }
             houseUserVo.setName(householdInfo.getName())
                     .setUserId(householdInfo.getUserId())
                     .setBuildingNumber(house.getBuildingNumber())
-                    .setRoomNumber(house.getRoomNumber())
-                    .setPlateNumber(car.getPlateNumber());
+                    .setRoomNumber(house.getRoomNumber());
 
             houseUserVos.add(houseUserVo);
         }
