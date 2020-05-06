@@ -50,7 +50,9 @@ public class HouseServiceImpl extends ServiceImpl<HouseMapper, House> implements
         List<Long> userIds = housePage.getRecords().stream().filter(house -> house.getUserId() != null).map(House::getUserId).collect(Collectors.toList());
         QueryWrapper<HouseholdInfo> householdInfoQueryWrapper = new QueryWrapper<>();
         householdInfoQueryWrapper.select(HouseholdInfo.USER_ID, HouseholdInfo.NAME);
-        householdInfoQueryWrapper.in(HouseholdInfo.USER_ID, userIds);
+        if(!userIds.isEmpty()) {
+            householdInfoQueryWrapper.in(HouseholdInfo.USER_ID, userIds);
+        }
         Map<Long, String> names = householdInfoMapper.selectList(householdInfoQueryWrapper)
                 .stream().collect(Collectors.toMap(HouseholdInfo::getUserId, HouseholdInfo::getName));
         //设置name

@@ -31,7 +31,7 @@ public class HouseController {
      * @param size 页码大小 默认10
      * @return CommonResult<Page<HouseInfoVo>>
      */
-    @PostMapping("/getHouseInfo")
+    @GetMapping("/getHouseInfo")
     public CommonResult<Page<HouseInfoVo>> getHouseInfo(@RequestParam(value = "userId", required = false) Long userId,
                                                         @RequestParam(value = "buildingNum", required = false) Integer buildingNum,
                                                         @RequestParam(value = "current", defaultValue = "1") int current,
