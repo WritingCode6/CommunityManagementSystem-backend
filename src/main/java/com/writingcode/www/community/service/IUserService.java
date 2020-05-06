@@ -22,14 +22,6 @@ public interface IUserService extends IService<User> {
     LoginVo login(String userName, String password);
 
     /**
-     * 登出
-     *
-     * @param userId 用户id
-     * @return boolean
-     */
-    boolean logout(Long userId);
-
-    /**
      * 查看住户的个人信息
      * @param userId 用户id
      * @return UserDetailVo

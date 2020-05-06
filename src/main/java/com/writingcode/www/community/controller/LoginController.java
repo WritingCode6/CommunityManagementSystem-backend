@@ -1,5 +1,6 @@
 package com.writingcode.www.community.controller;
 
+import com.writingcode.www.community.auth.source.IDataStore;
 import com.writingcode.www.community.entity.vo.LoginVo;
 import com.writingcode.www.community.result.CommonResult;
 import com.writingcode.www.community.service.IUserService;
@@ -22,6 +23,9 @@ public class LoginController {
     @Resource
     private IUserService userService;
 
+    @Resource
+    private IDataStore dataStore;
+
     /**
      * 用户登录方法
      * @param userName 用户名
@@ -35,7 +39,7 @@ public class LoginController {
 
     @GetMapping("/logout")
     public CommonResult<Void> logout(Long userId){
-        if(userService.logout(userId)){
+        if(dataStore.remove(String.valueOf(userId))){
             return new CommonResult<Void>().success();
         }
         return new CommonResult<Void>().fail();

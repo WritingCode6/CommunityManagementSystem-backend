@@ -35,9 +35,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     private SecurityUtil securityUtil;
 
     @Resource
-    private IDataStore dataStore;
-
-    @Resource
     private HouseMapper houseMapper;
 
     @Resource
@@ -63,12 +60,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         String token = securityUtil.login(String.valueOf(user.getId()), null, null);
 
         return new LoginVo().setRoleId(roleId).setUserId(user.getId()).setToken(token);
-    }
-
-    @Override
-    public boolean logout(Long userId) {
-        Assert.notNull(userId, "用户id不能为空");
-        return dataStore.remove(String.valueOf(userId));
     }
 
     @Override
