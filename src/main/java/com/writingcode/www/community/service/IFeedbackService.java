@@ -17,4 +17,11 @@ public interface IFeedbackService extends IService<Feedback> {
      */
     boolean addFeedback(Feedback feedback);
 
+    /**
+     * 更新反馈
+     * @param feedback 反馈
+     * @return boolean
+     */
+    boolean updateFeedback(Feedback feedback);
+
 }

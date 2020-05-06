@@ -1,5 +1,6 @@
 package com.writingcode.www.community.service.impl;
 
+import com.writingcode.www.community.dao.StaffInfoMapper;
 import com.writingcode.www.community.dao.UserRoleMapper;
 import com.writingcode.www.community.entity.po.Feedback;
 import com.writingcode.www.community.dao.FeedbackMapper;
@@ -24,6 +25,9 @@ public class FeedbackServiceImpl extends ServiceImpl<FeedbackMapper, Feedback> i
     @Resource
     private UserRoleMapper userRoleMapper;
 
+    @Resource
+    private StaffInfoMapper staffInfoMapper;
+
     @Override
     public boolean addFeedback(Feedback feedback) {
         Assert.notNull(feedback, "反馈内容不能为空");
@@ -35,6 +39,19 @@ public class FeedbackServiceImpl extends ServiceImpl<FeedbackMapper, Feedback> i
         Assert.state(role != null && role == 2, "该用户不存在或不是住户");
 
         Assert.state(feedbackMapper.insert(feedback) == 1, "增加失败");
+        return true;
+    }
+
+    @Override
+    public boolean updateFeedback(Feedback feedback) {
+        Assert.notNull(feedback, "反馈内容不能为空");
+        Assert.notNull(feedback.getId(), "主键id不能为空");
+
+        if(feedback.getEmployeeId() != null) {
+            Assert.state(staffInfoMapper.selectStaffExist(feedback.getEmployeeId()), "该用户不存在或不是工作人员");
+        }
+
+        Assert.state(feedbackMapper.updateById(feedback) == 1, "更新失败");
         return true;
     }
 }

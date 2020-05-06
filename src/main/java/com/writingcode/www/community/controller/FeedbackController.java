@@ -33,4 +33,17 @@ public class FeedbackController {
         }
         return new CommonResult<Void>().fail();
     }
+
+    /**
+     * 更新反馈
+     * @param feedback 反馈
+     * @return CommonResult<Void>
+     */
+    @PostMapping("/updateFeedback")
+    public CommonResult<Void> updateFeedback(@RequestBody Feedback feedback){
+        if(feedbackService.updateFeedback(feedback)){
+            return new CommonResult<Void>().success();
+        }
+        return new CommonResult<Void>().fail();
+    }
 }
