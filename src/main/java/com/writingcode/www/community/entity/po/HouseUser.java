@@ -1,5 +1,7 @@
 package com.writingcode.www.community.entity.po;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -20,6 +22,9 @@ public class HouseUser implements Serializable {
 
     public static final String HOUSE_ID = "house_id";
     public static final String USER_ID = "user_id";
+
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
 
     /**
      * 房屋id
