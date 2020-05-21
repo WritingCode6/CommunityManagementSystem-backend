@@ -31,4 +31,17 @@ public class SystemController {
         }
         return new CommonResult<Void>().fail();
     }
+
+    /**
+     * 删除用户
+     * @param userId 用户id
+     * @return CommonResult<Void>
+     */
+    @GetMapping("/deleteUser")
+    public CommonResult<Void> deleteUser(@RequestParam("userId") Long userId){
+        if(userService.deleteUser(userId)){
+            return new CommonResult<Void>().success();
+        }
+        return new CommonResult<Void>().fail();
+    }
 }

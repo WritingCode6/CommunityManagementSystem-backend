@@ -119,4 +119,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         staffInfoMapper.insert(StaffVo.convert(staffVo));
         return true;
     }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public boolean deleteUser(Long userId) {
+        Assert.notNull(userId, "用户id不能为空");
+        userMapper.deleteById(userId);
+        return true;
+    }
 }

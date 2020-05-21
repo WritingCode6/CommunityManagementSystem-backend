@@ -42,4 +42,11 @@ public interface IUserService extends IService<User> {
      */
     boolean addStaff(StaffVo staffVo);
 
+    /**
+     * 删除用户
+     * @param userId 用户id
+     * @return boolean
+     */
+    boolean deleteUser(Long userId);
+
 }
