@@ -1,14 +1,9 @@
 package com.writingcode.www.community.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.writingcode.www.community.dao.CarMapper;
-import com.writingcode.www.community.dao.HouseMapper;
-import com.writingcode.www.community.dao.HouseUserMapper;
-import com.writingcode.www.community.entity.po.Car;
-import com.writingcode.www.community.entity.po.House;
-import com.writingcode.www.community.entity.po.HouseUser;
-import com.writingcode.www.community.entity.po.HouseholdInfo;
-import com.writingcode.www.community.dao.HouseholdInfoMapper;
+import com.writingcode.www.community.dao.*;
+import com.writingcode.www.community.entity.po.*;
+import com.writingcode.www.community.entity.vo.HouseHoldVo;
 import com.writingcode.www.community.entity.vo.HouseUserVo;
 import com.writingcode.www.community.service.IHouseholdInfoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -39,6 +34,12 @@ public class HouseholdInfoServiceImpl extends ServiceImpl<HouseholdInfoMapper, H
 
     @Resource
     private CarMapper carMapper;
+
+    @Resource
+    private UserMapper userMapper;
+
+    @Resource
+    private UserRoleMapper userRoleMapper;
 
 
     @Override
@@ -101,6 +102,26 @@ public class HouseholdInfoServiceImpl extends ServiceImpl<HouseholdInfoMapper, H
         Assert.notNull(householdInfo.getId(), "主键不能为空");
 
         Assert.state(householdInfoMapper.updateById(householdInfo) == 1, "更新失败");
+        return true;
+    }
+
+    @Override
+    public boolean addUser(HouseHoldVo houseHoldVo) {
+        houseHoldVo.isNotNull();
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq(User.USER_NAME, houseHoldVo.getUserName());
+        Assert.state(userMapper.selectOne(queryWrapper) == null, "该用户名已存在");
+        Assert.state(userMapper.insert(new User().setUserName(houseHoldVo.getUserName()).setPassword(houseHoldVo.getPassword())) == 1,
+                "添加用户失败");
+        User user = userMapper.selectOne(queryWrapper);
+        userRoleMapper.insert(new UserRole().setUserId(user.getId()).setRoleId(2));
+
+        QueryWrapper<House> queryWrapper1 = new QueryWrapper<>();
+        queryWrapper1.eq(House.ROOM_NUMBER, houseHoldVo.getRoomNumber()).eq(House.BUILDING_NUMBER, houseHoldVo.getBuildingNumber());
+        House house = houseMapper.selectOne(queryWrapper1);
+        Assert.notNull(house, "该房间不存在");
+        householdInfoMapper.insert(HouseHoldVo.convert(houseHoldVo).setUserId(user.getId()));
+        houseUserMapper.insert(new HouseUser().setHouseId(house.getId()).setUserId(user.getId()));
         return true;
     }
 }

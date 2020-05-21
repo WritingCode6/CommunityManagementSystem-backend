@@ -116,7 +116,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         User user = userMapper.selectOne(queryWrapper);
         userRoleMapper.insert(new UserRole().setUserId(user.getId()).setRoleId(staffVo.getUserType()));
 
-        staffInfoMapper.insert(StaffVo.convert(staffVo));
+        staffInfoMapper.insert(StaffVo.convert(staffVo).setUserId(user.getId()));
         return true;
     }
 
