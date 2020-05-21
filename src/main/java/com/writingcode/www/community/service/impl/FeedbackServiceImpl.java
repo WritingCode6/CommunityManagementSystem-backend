@@ -10,6 +10,7 @@ import com.writingcode.www.community.entity.vo.FeedbackVo;
 import com.writingcode.www.community.service.IFeedbackService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
@@ -36,6 +37,7 @@ public class FeedbackServiceImpl extends ServiceImpl<FeedbackMapper, Feedback> i
     @Resource
     private HouseholdInfoMapper householdInfoMapper;
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean addFeedback(Feedback feedback) {
         Assert.notNull(feedback, "反馈内容不能为空");
@@ -50,6 +52,7 @@ public class FeedbackServiceImpl extends ServiceImpl<FeedbackMapper, Feedback> i
         return true;
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean updateFeedback(Feedback feedback) {
         Assert.notNull(feedback, "反馈内容不能为空");

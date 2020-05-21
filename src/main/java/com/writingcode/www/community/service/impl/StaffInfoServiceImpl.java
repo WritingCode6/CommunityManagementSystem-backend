@@ -7,6 +7,7 @@ import com.writingcode.www.community.dao.StaffInfoMapper;
 import com.writingcode.www.community.service.IStaffInfoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
@@ -38,6 +39,7 @@ public class StaffInfoServiceImpl extends ServiceImpl<StaffInfoMapper, StaffInfo
         return staffInfoMapper.selectList(queryWrapper);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean updateStaffInfo(StaffInfo staffInfo) {
         Assert.notNull(staffInfo, "更新内容不能为空");

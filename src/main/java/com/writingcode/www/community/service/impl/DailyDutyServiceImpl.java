@@ -45,6 +45,7 @@ public class DailyDutyServiceImpl extends ServiceImpl<DailyDutyMapper, DailyDuty
         return true;
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean addDutyForm(DailyDuty dailyDuty) {
         Assert.notNull(dailyDuty, "值班信息不能为空");

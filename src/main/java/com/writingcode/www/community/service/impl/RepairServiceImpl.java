@@ -12,6 +12,7 @@ import com.writingcode.www.community.entity.vo.RepairVo;
 import com.writingcode.www.community.service.IRepairService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
@@ -41,6 +42,7 @@ public class RepairServiceImpl extends ServiceImpl<RepairMapper, Repair> impleme
     @Resource
     private UserRoleMapper userRoleMapper;
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean addRepair(Repair repair) {
         Assert.notNull(repair, "保修单不能为空");
@@ -57,6 +59,7 @@ public class RepairServiceImpl extends ServiceImpl<RepairMapper, Repair> impleme
         return true;
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean updateRepair(Repair repair) {
         Assert.notNull(repair, "更新内容不能为空");

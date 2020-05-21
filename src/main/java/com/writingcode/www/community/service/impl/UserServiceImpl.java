@@ -88,6 +88,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         return userDetailVo;
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean updateAccount(User user) {
         Assert.notNull(user, "更新内容不能为空");

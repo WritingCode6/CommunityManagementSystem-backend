@@ -8,6 +8,7 @@ import com.writingcode.www.community.entity.vo.HouseUserVo;
 import com.writingcode.www.community.service.IHouseholdInfoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
@@ -105,6 +106,7 @@ public class HouseholdInfoServiceImpl extends ServiceImpl<HouseholdInfoMapper, H
         return true;
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean addUser(HouseHoldVo houseHoldVo) {
         houseHoldVo.isNotNull();
