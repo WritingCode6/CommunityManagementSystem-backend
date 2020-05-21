@@ -3,6 +3,7 @@ package com.writingcode.www.community.service;
 import com.writingcode.www.community.entity.po.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.writingcode.www.community.entity.vo.LoginVo;
+import com.writingcode.www.community.entity.vo.StaffVo;
 import com.writingcode.www.community.entity.vo.UserDetailVo;
 
 /**
@@ -33,5 +34,12 @@ public interface IUserService extends IService<User> {
      * @return boolean
      */
     boolean updateAccount(User user);
+
+    /**
+     * 添加工作人员
+     * @param staffVo 工作人员信息
+     * @return boolean
+     */
+    boolean addStaff(StaffVo staffVo);
 
 }

@@ -6,10 +6,12 @@ import com.writingcode.www.community.auth.util.SecurityUtil;
 import com.writingcode.www.community.dao.*;
 import com.writingcode.www.community.entity.po.*;
 import com.writingcode.www.community.entity.vo.LoginVo;
+import com.writingcode.www.community.entity.vo.StaffVo;
 import com.writingcode.www.community.entity.vo.UserDetailVo;
 import com.writingcode.www.community.service.IUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
@@ -39,6 +41,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @Resource
     private HouseholdInfoMapper householdInfoMapper;
+
+    @Resource
+    private StaffInfoMapper staffInfoMapper;
 
     @Resource
     private CarMapper carMapper;
@@ -95,6 +100,23 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         }
 
         Assert.state(userMapper.updateById(user) == 1, "更新失败");
+        return true;
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public boolean addStaff(StaffVo staffVo) {
+        staffVo.isNotNull();
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq(User.USER_NAME, staffVo.getUserName());
+        Assert.state(userMapper.selectOne(queryWrapper) == null, "该用户名已存在");
+        Assert.state(userMapper.insert(new User().setUserName(staffVo.getUserName()).setPassword(staffVo.getPassword())) == 1,
+                "添加用户失败");
+
+        User user = userMapper.selectOne(queryWrapper);
+        userRoleMapper.insert(new UserRole().setUserId(user.getId()).setRoleId(staffVo.getUserType()));
+
+        staffInfoMapper.insert(StaffVo.convert(staffVo));
         return true;
     }
 }
