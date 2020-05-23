@@ -9,5 +9,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @date  2020/05/02
  */
 public interface ICarService extends IService<Car> {
-
+    Car selectCarByUserId(Long userId);
 }
