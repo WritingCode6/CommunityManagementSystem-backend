@@ -4,7 +4,7 @@ spring:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
       url: jdbc:mysql://118.178.194.35:3306/community?useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
-      username: dms
+      username: root
       password: 1175450568Xu!
       initial-size: 10
       max-active: 60
