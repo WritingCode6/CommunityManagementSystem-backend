@@ -107,6 +107,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean addStaff(StaffVo staffVo) {
+        Assert.notNull(staffVo, "传入信息不能为null");
         staffVo.isNotNull();
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq(User.USER_NAME, staffVo.getUserName());

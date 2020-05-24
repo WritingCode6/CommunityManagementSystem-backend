@@ -109,6 +109,7 @@ public class HouseholdInfoServiceImpl extends ServiceImpl<HouseholdInfoMapper, H
     @Transactional(rollbackFor = Exception.class)
     @Override
     public boolean addUser(HouseHoldVo houseHoldVo) {
+        Assert.notNull(houseHoldVo, "传入信息不能为null");
         houseHoldVo.isNotNull();
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq(User.USER_NAME, houseHoldVo.getUserName());

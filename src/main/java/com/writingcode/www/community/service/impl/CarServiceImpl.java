@@ -13,5 +13,18 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CarServiceImpl extends ServiceImpl<CarMapper, Car> implements ICarService {
+    @Resource
+    private CarMapper carMapper;
 
+    public Car selectCarByUserId(Long userId)
+    {
+        Car car=carMapper.selectCarByUserId(userId);
+        Assert.notNull(car, "该用户暂无车辆信息");
+        return car;
+    }
+
+    public void updateCarById(Long id)
+    {
+        Car car=carMapper.selectCarByCarId(id);
+    }
 }

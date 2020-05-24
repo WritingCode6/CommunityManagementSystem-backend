@@ -1,6 +1,7 @@
 package com.writingcode.www.community.service;
 
 import com.writingcode.www.community.entity.po.User;
+import com.writingcode.www.community.entity.vo.StaffVo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -44,5 +45,31 @@ public class IUserServiceTest {
         Assertions.assertThrows(IllegalArgumentException.class, () -> userService.updateAccount(new User()));
         Assertions.assertThrows(IllegalArgumentException.class, () -> userService.updateAccount(null));
         Assertions.assertTrue(userService.updateAccount(new User().setId(1L).setPassword("1234567")));
+    }
+
+    @Transactional
+    @Rollback
+    @Test
+    void addStaff(){
+        StaffVo staffVo = new StaffVo();
+        Assertions.assertThrows(IllegalArgumentException.class, () -> userService.addStaff(null));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> userService.addStaff(staffVo));
+        staffVo.setUserName("Test")
+                .setPassword("123456")
+                .setName("HaGa")
+                .setIdNumber("111111222222223333")
+                .setPhone("15345454545")
+                .setSex(0)
+                .setUserType(3)
+                .setServiceId(123456L);
+        Assertions.assertTrue(userService.addStaff(staffVo));
+    }
+
+    @Transactional
+    @Rollback
+    @Test
+    void deleteUser(){
+        Assertions.assertThrows(IllegalArgumentException.class, () -> userService.deleteUser(null));
+        Assertions.assertTrue(userService.deleteUser(1L));
     }
 }
