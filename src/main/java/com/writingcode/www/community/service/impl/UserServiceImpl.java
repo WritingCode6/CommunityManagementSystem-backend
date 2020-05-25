@@ -5,6 +5,7 @@ import com.writingcode.www.community.auth.source.IDataStore;
 import com.writingcode.www.community.auth.util.SecurityUtil;
 import com.writingcode.www.community.dao.*;
 import com.writingcode.www.community.entity.po.*;
+import com.writingcode.www.community.entity.vo.HouseHoldVo;
 import com.writingcode.www.community.entity.vo.LoginVo;
 import com.writingcode.www.community.entity.vo.StaffVo;
 import com.writingcode.www.community.entity.vo.UserDetailVo;
@@ -72,7 +73,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     public UserDetailVo getUserInfo(Long userId) {
         Assert.notNull(userId, "用户id不能为空");
 
-        Assert.notNull(userMapper.selectById(userId), "该用户不存在");
+        User user = userMapper.selectById(userId);
+
+        Assert.notNull(user, "该用户不存在");
 
         UserDetailVo userDetailVo = new UserDetailVo();
 
@@ -84,7 +87,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
         Car car = carMapper.selectByUserId(userId);
 
-        userDetailVo.setCarInfo(car).setHouseInfo(house).setUserInfo(householdInfo);
+        userDetailVo.setCarInfo(car).setHouseInfo(house).setUserInfo(HouseHoldVo.convert(householdInfo).setUserName(user.getUserName()));
         return userDetailVo;
     }
 

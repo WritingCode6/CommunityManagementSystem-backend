@@ -14,6 +14,8 @@ import org.springframework.util.Assert;
 @Accessors(chain = true)
 public class HouseHoldVo {
 
+    private Long id;
+
     private String userName;
 
     private String password;
@@ -50,5 +52,12 @@ public class HouseHoldVo {
         HouseholdInfo householdInfo = new HouseholdInfo();
         BeanUtils.copyProperties(houseHoldVo, householdInfo);
         return householdInfo;
+    }
+
+    public static HouseHoldVo convert(HouseholdInfo householdInfo){
+        Assert.notNull(householdInfo, "传入对象不能位空");
+        HouseHoldVo houseHoldVo = new HouseHoldVo();
+        BeanUtils.copyProperties(householdInfo, houseHoldVo);
+        return houseHoldVo;
     }
 }
