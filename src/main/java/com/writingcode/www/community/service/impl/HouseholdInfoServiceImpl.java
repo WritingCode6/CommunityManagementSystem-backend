@@ -1,7 +1,9 @@
 package com.writingcode.www.community.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.writingcode.www.community.dao.*;
+import com.writingcode.www.community.entity.dto.HouseholdPageDto;
 import com.writingcode.www.community.entity.po.*;
 import com.writingcode.www.community.entity.vo.HouseHoldVo;
 import com.writingcode.www.community.entity.vo.HouseUserVo;
@@ -44,57 +46,24 @@ public class HouseholdInfoServiceImpl extends ServiceImpl<HouseholdInfoMapper, H
 
 
     @Override
-    public List<HouseUserVo> searchUser(String name, Integer buildingNum, Integer roomNum) {
-        QueryWrapper<HouseholdInfo> householdInfoQueryWrapper = new QueryWrapper<>();
-        QueryWrapper<House> houseQueryWrapper = new QueryWrapper<>();
-        if(buildingNum != null){
-            houseQueryWrapper.eq(House.BUILDING_NUMBER, buildingNum);
-        }
-        if(roomNum != null){
-            houseQueryWrapper.eq(House.ROOM_NUMBER, roomNum);
-        }
-        List<Integer> houseIds = houseMapper.selectList(houseQueryWrapper).stream().map(House::getId).collect(Collectors.toList());
+    public Page<HouseUserVo> searchUser(String name, Integer buildingNum, Integer roomNum, Page<HouseUserVo> page) {
+        HouseholdPageDto householdPageDto = new HouseholdPageDto()
+                .setBuildingNum(buildingNum)
+                .setRoomNum(roomNum)
+                .setName(name)
+                .setSize(page.getSize()).setOffset((page.getCurrent() - 1) * page.getSize());
+        List<HouseUserVo> houseUserVoList = householdInfoMapper.selectHouseUser(householdPageDto);
 
-        if(!houseIds.isEmpty()) {
-            QueryWrapper<HouseUser> houseUserQueryWrapper = new QueryWrapper<>();
-            houseUserQueryWrapper.in(HouseUser.HOUSE_ID, houseIds);
-            List<Long> userIds = houseUserMapper.selectList(houseUserQueryWrapper).stream().map(HouseUser::getUserId).collect(Collectors.toList());
-            if(!userIds.isEmpty()){
-                householdInfoQueryWrapper.in(HouseholdInfo.USER_ID, userIds);
-            }
-        }else {
-            return null;
-        }
-
-        if(name != null){
-            householdInfoQueryWrapper.like(HouseholdInfo.NAME, name);
-        }
-
-        List<HouseholdInfo> householdInfos = householdInfoMapper.selectList(householdInfoQueryWrapper);
-
-        QueryWrapper<Car> queryWrapper;
-        List<HouseUserVo> houseUserVos = new LinkedList<>();
-        for(HouseholdInfo householdInfo : householdInfos){
-            HouseUserVo houseUserVo = new HouseUserVo();
-
-            House house = houseMapper.selectHouseByUserId(householdInfo.getUserId());
-
-            queryWrapper = new QueryWrapper<>();
-            queryWrapper.eq("user_id", householdInfo.getUserId());
-
-            Car car = carMapper.selectOne(queryWrapper);
-
+        houseUserVoList.forEach(houseUserVo -> {
+            Car car = carMapper.selectByUserId(houseUserVo.getUserId());
             if(car != null){
                 houseUserVo.setPlateNumber(car.getPlateNumber());
             }
-            houseUserVo.setName(householdInfo.getName())
-                    .setUserId(householdInfo.getUserId())
-                    .setBuildingNumber(house.getBuildingNumber())
-                    .setRoomNumber(house.getRoomNumber());
+        });
 
-            houseUserVos.add(houseUserVo);
-        }
-        return houseUserVos;
+        page.setRecords(houseUserVoList);
+        page.setTotal(householdInfoMapper.selectHouseUserCount(householdPageDto));
+        return page;
     }
 
     @Override

@@ -2,4 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.writingcode.www.community.dao.HouseholdInfoMapper">
 
+
+    <select id="selectHouseUser" parameterType="com.writingcode.www.community.entity.dto.HouseholdPageDto" resultType="com.writingcode.www.community.entity.vo.HouseUserVo">
+        SELECT household_info.user_id, house.room_number, household_info.name, house.building_number
+        FROM house, household_info , house_user WHERE household_info.user_id = house_user.user_id AND house.id = house_user.house_id
+        <if test="householdPageDto.buildingNum != null">
+            AND house.building_number = #{householdPageDto.buildingNum}
+        </if>
+        <if test="householdPageDto.roomNum != null">
+            AND house.room_number = #{householdPageDto.roomNum}
+        </if>
+        <if test="householdPageDto.name != null">
+            AND household_info.name LIKE CONCAT('%', #{householdPageDto.name}, '%')
+        </if>
+        LIMIT #{householdPageDto.size} OFFSET #{householdPageDto.offset}
+    </select>
+
+    <select id="selectHouseUserCount" parameterType="com.writingcode.www.community.entity.dto.HouseholdPageDto" resultType="Integer">
+        SELECT COUNT(1)
+        FROM house, household_info , house_user WHERE household_info.user_id = house_user.user_id AND house.id = house_user.house_id
+        <if test="householdPageDto.buildingNum != null">
+            AND house.building_number = #{householdPageDto.buildingNum}
+        </if>
+        <if test="householdPageDto.roomNum != null">
+            AND house.room_number = #{householdPageDto.roomNum}
+        </if>
+        <if test="householdPageDto.name != null">
+            AND household_info.name LIKE CONCAT('%', #{householdPageDto.name}, '%')
+        </if>
+        LIMIT #{householdPageDto.size} OFFSET #{householdPageDto.offset}
+    </select>
 </mapper>

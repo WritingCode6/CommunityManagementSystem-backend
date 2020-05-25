@@ -1,5 +1,6 @@
 package com.writingcode.www.community.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.writingcode.www.community.entity.po.HouseholdInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.writingcode.www.community.entity.vo.HouseHoldVo;
@@ -19,9 +20,10 @@ public interface IHouseholdInfoService extends IService<HouseholdInfo> {
      * @param name 姓名
      * @param buildingNum 栋数
      * @param roomNum 房间号
-     * @return List<HouseUserVo>
+     * @param page 分页bean
+     * @return Page<HouseUserVo>
      */
-    List<HouseUserVo> searchUser(String name, Integer buildingNum, Integer roomNum);
+    Page<HouseUserVo> searchUser(String name, Integer buildingNum, Integer roomNum, Page<HouseUserVo> page);
 
     /**
      * 更新住户信息
