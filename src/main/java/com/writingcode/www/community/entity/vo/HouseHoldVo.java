@@ -54,10 +54,4 @@ public class HouseHoldVo {
         return householdInfo;
     }
 
-    public static HouseHoldVo convert(HouseholdInfo householdInfo){
-        Assert.notNull(householdInfo, "传入对象不能位空");
-        HouseHoldVo houseHoldVo = new HouseHoldVo();
-        BeanUtils.copyProperties(householdInfo, houseHoldVo);
-        return houseHoldVo;
-    }
 }

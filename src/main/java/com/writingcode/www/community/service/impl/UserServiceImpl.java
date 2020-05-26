@@ -87,7 +87,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
         Car car = carMapper.selectByUserId(userId);
 
-        userDetailVo.setCarInfo(car).setHouseInfo(house).setUserInfo(HouseHoldVo.convert(householdInfo).setUserName(user.getUserName()));
+        HouseHoldVo houseHoldVo = new HouseHoldVo();
+        houseHoldVo.setId(userId)
+                .setIdNumber(householdInfo.getIdNumber())
+                .setResidenceAddress(householdInfo.getResidenceAddress())
+                .setAncestralHome(householdInfo.getAncestralHome())
+                .setName(householdInfo.getName())
+                .setSex(householdInfo.getSex())
+                .setUserName(user.getUserName());
+        userDetailVo.setCarInfo(car).setHouseInfo(house).setUserInfo(houseHoldVo);
         return userDetailVo;
     }
 
