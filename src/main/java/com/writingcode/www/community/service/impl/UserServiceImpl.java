@@ -5,10 +5,7 @@ import com.writingcode.www.community.auth.source.IDataStore;
 import com.writingcode.www.community.auth.util.SecurityUtil;
 import com.writingcode.www.community.dao.*;
 import com.writingcode.www.community.entity.po.*;
-import com.writingcode.www.community.entity.vo.HouseHoldVo;
-import com.writingcode.www.community.entity.vo.LoginVo;
-import com.writingcode.www.community.entity.vo.StaffVo;
-import com.writingcode.www.community.entity.vo.UserDetailVo;
+import com.writingcode.www.community.entity.vo.*;
 import com.writingcode.www.community.service.IUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
@@ -87,15 +84,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
         Car car = carMapper.selectByUserId(userId);
 
-        HouseHoldVo houseHoldVo = new HouseHoldVo();
-        houseHoldVo.setId(userId)
+        UserVo userVo = new UserVo();
+        userVo.setId(userId)
                 .setIdNumber(householdInfo.getIdNumber())
                 .setResidenceAddress(householdInfo.getResidenceAddress())
                 .setAncestralHome(householdInfo.getAncestralHome())
                 .setName(householdInfo.getName())
                 .setSex(householdInfo.getSex())
                 .setUserName(user.getUserName());
-        userDetailVo.setCarInfo(car).setHouseInfo(house).setUserInfo(houseHoldVo);
+        userDetailVo.setCarInfo(car).setHouseInfo(house).setUserInfo(userVo);
         return userDetailVo;
     }
 

@@ -18,5 +18,5 @@ public class UserDetailVo {
 
     private Car carInfo;
 
-    private HouseHoldVo userInfo;
+    private UserVo userInfo;
 }
