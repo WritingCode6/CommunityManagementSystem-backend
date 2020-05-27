@@ -9,6 +9,7 @@ import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -37,8 +38,8 @@ public class DailyDuty implements Serializable {
     /**
      * 值班日期
      */
-    @JsonFormat( pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime date;
+    @JsonFormat( pattern = "yyyy-MM-dd")
+    private Date date;
 
     /**
      * 用户id

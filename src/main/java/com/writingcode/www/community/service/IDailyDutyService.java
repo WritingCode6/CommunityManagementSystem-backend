@@ -7,6 +7,7 @@ import com.writingcode.www.community.entity.vo.DutyFromVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,11 +33,11 @@ public interface IDailyDutyService extends IService<DailyDuty> {
 
     /**
      * 分页获取值班表
-     * @param localDateTime 日期
+     * @param date 日期
      * @param type 类型
      * @param page 分页bean
      * @return Page<DutyFromVo>
      */
-    Page<DutyFromVo> getDutyInfo(LocalDateTime localDateTime, Integer type, Page<DutyFromVo> page);
+    Page<DutyFromVo> getDutyInfo(Date date, Integer type, Page<DutyFromVo> page);
 
 }

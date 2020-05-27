@@ -63,7 +63,7 @@ public class DailyDutyController {
      * @return CommonResult<Page<DutyFromVo>>
      */
     @GetMapping("/getDutyInfo")
-    public CommonResult<Page<DutyFromVo>> getDutyInfo(@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam(value = "date", required = false) LocalDateTime date,
+    public CommonResult<Page<DutyFromVo>> getDutyInfo(@DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam(value = "date", required = false) Date date,
                                                      @RequestParam(value = "type", required = false) Integer type,
                                                      @RequestParam(value = "current", defaultValue = "1") int current,
                                                      @RequestParam(value = "size", defaultValue = "10") int size){

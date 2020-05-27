@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.util.Assert;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  *
@@ -26,8 +27,8 @@ public class DutyFromVo {
     /**
      * 值班日期
      */
-    @JsonFormat( pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime date;
+    @JsonFormat( pattern = "yyyy-MM-dd")
+    private Date date;
 
     /**
      * 用户id

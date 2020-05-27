@@ -17,6 +17,7 @@ import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -60,10 +61,10 @@ public class DailyDutyServiceImpl extends ServiceImpl<DailyDutyMapper, DailyDuty
     }
 
     @Override
-    public Page<DutyFromVo> getDutyInfo(LocalDateTime localDateTime, Integer type, Page<DutyFromVo> page) {
+    public Page<DutyFromVo> getDutyInfo(Date date, Integer type, Page<DutyFromVo> page) {
         QueryWrapper<DailyDuty> dailyDutyQueryWrapper = new QueryWrapper<>();
-        if(localDateTime != null){
-            dailyDutyQueryWrapper.eq(DailyDuty.DATE, localDateTime);
+        if(date != null){
+            dailyDutyQueryWrapper.eq(DailyDuty.DATE, date);
         }
         if(type != null){
             dailyDutyQueryWrapper.eq(DailyDuty.TYPE, type);
@@ -74,19 +75,21 @@ public class DailyDutyServiceImpl extends ServiceImpl<DailyDutyMapper, DailyDuty
         //获取用户id
         List<Long> userId = dailyDutyPage.getRecords().stream().map(DailyDuty::getEmployeeId).collect(Collectors.toList());
 
-        QueryWrapper<StaffInfo> queryWrapper1 = new QueryWrapper<>();
-        queryWrapper1.in(StaffInfo.USER_ID, userId);
-        Map<Long, String> userNames = staffInfoMapper.selectList(queryWrapper1).stream().collect(Collectors.toMap(StaffInfo::getUserId, StaffInfo::getName));
+        if(!userId.isEmpty()) {
+            QueryWrapper<StaffInfo> queryWrapper1 = new QueryWrapper<>();
+            queryWrapper1.in(StaffInfo.USER_ID, userId);
+            Map<Long, String> userNames = staffInfoMapper.selectList(queryWrapper1).stream().collect(Collectors.toMap(StaffInfo::getUserId, StaffInfo::getName));
 
-        //设置name
-        page.setRecords(dailyDutyPage.getRecords().stream().map(dailyDuty -> {
-            DutyFromVo dutyFromVo = DutyFromVo.convert(dailyDuty);
-            if(dailyDuty.getEmployeeId() != null) {
-                dutyFromVo.setName(userNames.get(dailyDuty.getEmployeeId()));
-            }
-            return dutyFromVo;
-        }).collect(Collectors.toList()));
-        page.setTotal(dailyDutyPage.getTotal());
+            //设置name
+            page.setRecords(dailyDutyPage.getRecords().stream().map(dailyDuty -> {
+                DutyFromVo dutyFromVo = DutyFromVo.convert(dailyDuty);
+                if (dailyDuty.getEmployeeId() != null) {
+                    dutyFromVo.setName(userNames.get(dailyDuty.getEmployeeId()));
+                }
+                return dutyFromVo;
+            }).collect(Collectors.toList()));
+            page.setTotal(dailyDutyPage.getTotal());
+        }
         return page;
     }
 }
