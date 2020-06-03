@@ -30,6 +30,5 @@
         <if test="householdPageDto.name != null">
             AND household_info.name LIKE CONCAT('%', #{householdPageDto.name}, '%')
         </if>
-        LIMIT #{householdPageDto.size} OFFSET #{householdPageDto.offset}
     </select>
 </mapper>
