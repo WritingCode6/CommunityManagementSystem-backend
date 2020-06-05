@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.writingcode.www.community.entity.vo.DutyFromVo;
 import org.apache.ibatis.annotations.Param;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -38,6 +39,6 @@ public interface IDailyDutyService extends IService<DailyDuty> {
      * @param page 分页bean
      * @return Page<DutyFromVo>
      */
-    Page<DutyFromVo> getDutyInfo(Date date, Integer type, Page<DutyFromVo> page);
+    Page<DutyFromVo> getDutyInfo(LocalDate date, Integer type, Page<DutyFromVo> page);
 
 }

@@ -7,6 +7,7 @@ import lombok.experimental.Accessors;
 import org.springframework.beans.BeanUtils;
 import org.springframework.util.Assert;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -28,7 +29,7 @@ public class DutyFromVo {
      * 值班日期
      */
     @JsonFormat( pattern = "yyyy-MM-dd")
-    private Date date;
+    private LocalDate date;
 
     /**
      * 用户id

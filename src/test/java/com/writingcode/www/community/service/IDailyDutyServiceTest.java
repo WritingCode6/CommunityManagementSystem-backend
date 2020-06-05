@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.LinkedList;
@@ -47,10 +48,10 @@ public class IDailyDutyServiceTest {
         Assertions.assertThrows(IllegalArgumentException.class, () -> dailyDutyService.addDutyForm(null));
         Assertions.assertThrows(IllegalArgumentException.class, () -> dailyDutyService.addDutyForm(new DailyDuty()));
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> dailyDutyService.addDutyForm(new DailyDuty().setDate(new Date()).setPlace("撤唆")));
+                () -> dailyDutyService.addDutyForm(new DailyDuty().setDate(LocalDate.now()).setPlace("撤唆")));
         Assertions.assertThrows(IllegalStateException.class,
-                () -> dailyDutyService.addDutyForm(new DailyDuty().setEmployeeId(1L).setDate(new Date()).setPlace("撤唆")));
-        Assertions.assertTrue(dailyDutyService.addDutyForm(new DailyDuty().setEmployeeId(3L).setDate(new Date()).setPlace("撤唆")));
+                () -> dailyDutyService.addDutyForm(new DailyDuty().setEmployeeId(1L).setDate(LocalDate.now()).setPlace("撤唆")));
+        Assertions.assertTrue(dailyDutyService.addDutyForm(new DailyDuty().setEmployeeId(3L).setDate(LocalDate.now()).setPlace("撤唆")));
     }
 
     @Test

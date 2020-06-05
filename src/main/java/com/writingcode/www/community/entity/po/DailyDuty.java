@@ -7,9 +7,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
@@ -39,7 +40,7 @@ public class DailyDuty implements Serializable {
      * 值班日期
      */
     @JsonFormat( pattern = "yyyy-MM-dd")
-    private Date date;
+    private LocalDate date;
 
     /**
      * 用户id

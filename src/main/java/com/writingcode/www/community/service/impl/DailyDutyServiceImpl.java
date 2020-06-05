@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -61,7 +62,7 @@ public class DailyDutyServiceImpl extends ServiceImpl<DailyDutyMapper, DailyDuty
     }
 
     @Override
-    public Page<DutyFromVo> getDutyInfo(Date date, Integer type, Page<DutyFromVo> page) {
+    public Page<DutyFromVo> getDutyInfo(LocalDate date, Integer type, Page<DutyFromVo> page) {
         QueryWrapper<DailyDuty> dailyDutyQueryWrapper = new QueryWrapper<>();
         if(date != null){
             dailyDutyQueryWrapper.eq(DailyDuty.DATE, date);

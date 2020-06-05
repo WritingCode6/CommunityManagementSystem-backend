@@ -20,6 +20,7 @@ public class IPermissionPathImpl implements IPermissionPath {
         permitPath.add("/api/user/login");
         permitPath.add("/api/user/logout");
         permitPath.add("/error**");
+        permitPath.add("/api/repair/getRepair");
         return permitPath;
     }
 

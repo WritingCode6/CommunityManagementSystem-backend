@@ -10,9 +10,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -63,7 +64,7 @@ public class DailyDutyController {
      * @return CommonResult<Page<DutyFromVo>>
      */
     @GetMapping("/getDutyInfo")
-    public CommonResult<Page<DutyFromVo>> getDutyInfo(@DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam(value = "date", required = false) Date date,
+    public CommonResult<Page<DutyFromVo>> getDutyInfo(@DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam(value = "date", required = false) LocalDate date,
                                                      @RequestParam(value = "type", required = false) Integer type,
                                                      @RequestParam(value = "current", defaultValue = "1") int current,
                                                      @RequestParam(value = "size", defaultValue = "10") int size){
